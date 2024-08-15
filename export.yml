@@ -2,8 +2,18 @@
 - name: AWX export
   hosts: localhost
   connection: local
+  vars:
+    - repo_url: "https://github.com/davidthong/awx_import_poc.git"
+    - repo_dir: /tmp/export
 
   tasks:
+
+  - name: Clone the repository if it doesn't exist
+      ansible.builtin.git:
+        repo: "{{ repo_url }}"
+        dest: "{{ repo_dir }}"
+        clone: yes
+        update: no
 
    - name: Export 
      awx.awx.export:
