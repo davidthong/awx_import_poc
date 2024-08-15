@@ -10,5 +10,9 @@
        job_templates: 'all'
      register: job_templates
 
+   - name: Convert JSON to YAML
+      set_fact:
+        yaml_data: "{{ job_templates | from_json | to_yaml }}"
+
   
-   - debug: var=job_templates
+   - debug: var=yaml_data
