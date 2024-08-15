@@ -11,7 +11,7 @@
      register: job_templates
 
    - name: Convert JSON to YAML
-      set_fact:
+     ansible.builtin.set_fact:
         yaml_data: "{{ job_templates | from_json | to_yaml }}"
 
   
