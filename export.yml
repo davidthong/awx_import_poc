@@ -19,9 +19,14 @@
       clone: yes
       update: yes
     
-   - name: Add the file to the Git repository
+   - name: config email
      ansible.builtin.command:
-      cmd: "git config --global user.email dthong@gmail.com; git config --global user.name David Thong"
+      cmd: "git config --global user.email 'dthong@gmail.com'"
+      chdir: "{{ repo_dir }}"
+  
+   - name: config name
+     ansible.builtin.command:
+      cmd: "git config --global user.name 'david thong'"
       chdir: "{{ repo_dir }}"
 
    - name: Export 
