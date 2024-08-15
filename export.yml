@@ -1,0 +1,12 @@
+---
+
+hosts: localhost
+connection: local
+
+tasks:
+
+
+   - name: Export 
+     awx.awx.export:
+        job_templates: 'all'
+     register: job_templates
