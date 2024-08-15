@@ -32,7 +32,7 @@
    - name: Export 
      awx.awx.export:
        job_templates: 'all'
-     register: job_templates
+     register: job_templates.assets
 
    - name: Convert JSON to YAML
      ansible.builtin.set_fact:
