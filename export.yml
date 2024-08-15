@@ -33,3 +33,19 @@
      ansible.builtin.template:
        src: job_templates.j2
        dest: "{{ repo_dir}}/output/job_templates.yml"
+
+   - name: Add the file to the Git repository
+      ansible.builtin.command:
+        cmd: "git add . "
+        chdir: "{{ repo_dir }}"
+
+   - name: Commit the changes
+     ansible.builtin.command:
+      cmd: 'git commit -m "update templates yaml'
+      chdir: "{{ repo_dir }}"
+     ignore_errors: yes
+    
+   - name: Push the changes to the remote repository
+     ansible.builtin.command:
+        cmd: "git push origin main"  # Replace 'main' with your branch name if different
+        chdir: "{{ repo_dir }}"
