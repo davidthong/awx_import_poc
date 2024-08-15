@@ -6,7 +6,9 @@ controller_templates_all:
      job_type: {{ job_template.job_type }}
      playbook: {{ job_template.playbook }}
      inventory: {{ job_template.inventory.name }}
+     {% if job_template.execution_environment is not none %} 
      execution_environment: {{ job_template.execution_environment.name }}
+     {% endif %}
      concurrent_jobs_enabled: false
      verbosity: {{ job_template.verbosity }}
    #  credentials: {% for credential in job_template.related.credentials %}
