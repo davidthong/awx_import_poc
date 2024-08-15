@@ -9,7 +9,7 @@ controller_templates_all:
      execution_environment: {{ job_template.execution_environment.name }}
      concurrent_jobs_enabled: false
      verbosity: {{ job_template.verbosity }}
-     credentials: {% for credential in job_template.related.credentials %}
-        {{ credential }}
-                  {% endfor %}
+   #  credentials: {% for credential in job_template.related.credentials %}
+    #    {{ credential }}
+    #              {% endfor %}
 {% endfor %}
