@@ -3,9 +3,9 @@
   hosts: localhost
   connection: local
 
-tasks:
+  tasks:
 
-  - name: Export 
-    awx.awx.export:
+   - name: Export 
+     awx.awx.export:
        job_templates: 'all'
-    register: job_templates
+     register: job_templates
