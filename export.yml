@@ -18,6 +18,7 @@
       dest: "{{ repo_dir }}"
       clone: yes
       update: yes
+     no_log: true
     
    - name: config email
      ansible.builtin.command:
