@@ -9,3 +9,6 @@
      awx.awx.export:
        job_templates: 'all'
      register: job_templates
+
+  
+   - debug: var=job_templates
