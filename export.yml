@@ -3,8 +3,12 @@
   hosts: localhost
   connection: local
   vars:
-    - repo_url: "https://github.com/davidthong/awx_import_poc.git"
+    - git_user: davidthong
+    - git_pat: "{{ github_pat }}"
+    - repo_url: "https://{{ git_user }}:{{ git_pat }}@github.com/{{ git_user }}/awx_import_poc.git"
     - repo_dir: /tmp/export
+  vars_files:
+    - vault.yml
 
   tasks:
 
@@ -24,7 +28,6 @@
      ansible.builtin.set_fact:
         yaml_data: "{{ job_templates | to_yaml }}"
 
-  
    - debug: var=yaml_data
 
    - debug: var=job_templates
@@ -41,7 +44,7 @@
 
    - name: Commit the changes
      ansible.builtin.command:
-      cmd: 'git commit -m "update templates yaml'
+      cmd: git commit -m 'update templates yaml'
       chdir: "{{ repo_dir }}"
      ignore_errors: yes
     
