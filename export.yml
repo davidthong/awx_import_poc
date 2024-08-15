@@ -16,3 +16,5 @@
 
   
    - debug: var=yaml_data
+
+   - debug: var=job_templates
