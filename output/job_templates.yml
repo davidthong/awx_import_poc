@@ -1,2 +1,18 @@
-name: awx_export
-name: Demo Job Template
+---
+controller_templates_all:
+   - name: awx_export
+     project: awx_export
+     job_type: run
+     playbook: export.yml
+     inventory: Demo Inventory
+     execution_environment: {'name': 'Default execution environment', 'type': 'execution_environment'}
+     concurrent_jobs_enabled: false
+     verbosity: 0
+   - name: Demo Job Template
+     project: Demo Project
+     job_type: run
+     playbook: hello_world.yml
+     inventory: Demo Inventory
+     execution_environment: 
+     concurrent_jobs_enabled: false
+     verbosity: 0
