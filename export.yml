@@ -18,6 +18,11 @@
       dest: "{{ repo_dir }}"
       clone: yes
       update: yes
+    
+   - name: Add the file to the Git repository
+     ansible.builtin.command:
+      cmd: "git config --global user.email dthong@gmail.com; git config --global user.name David Thong"
+      chdir: "{{ repo_dir }}"
 
    - name: Export 
      awx.awx.export:
