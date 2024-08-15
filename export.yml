@@ -35,9 +35,9 @@
        dest: "{{ repo_dir}}/output/job_templates.yml"
 
    - name: Add the file to the Git repository
-      ansible.builtin.command:
-        cmd: "git add . "
-        chdir: "{{ repo_dir }}"
+     ansible.builtin.command:
+      cmd: "git add . "
+      chdir: "{{ repo_dir }}"
 
    - name: Commit the changes
      ansible.builtin.command:
