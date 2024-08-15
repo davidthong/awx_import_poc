@@ -11,5 +11,5 @@ controller_templates_all:
      verbosity: {{ job_template.verbosity }}
      credentials: {% for credential in job_template.related.credentials %}
         - {{ credential.name }}
-     {% endfor %}
+                  {% endfor %}
 {% endfor %}
