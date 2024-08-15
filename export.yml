@@ -12,7 +12,7 @@
 
    - name: Convert JSON to YAML
      ansible.builtin.set_fact:
-        yaml_data: "{{ job_templates | from_json | to_yaml }}"
+        yaml_data: "{{ job_templates | to_yaml }}"
 
   
    - debug: var=yaml_data
