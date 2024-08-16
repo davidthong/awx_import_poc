@@ -5,8 +5,10 @@ controller_templates_all:
    project: {{ job_template.project.name }}
    job_type: {{ job_template.job_type }}
    playbook: {{ job_template.playbook }}
-   inventory: {{ job_template.inventory.name }} {% if job_template.execution_environment is not none -%} 
-   execution_environment: {{ job_template.execution_environment.name }} {% endif -%}
+   inventory: {{ job_template.inventory.name }}
+   {% if job_template.execution_environment is not none -%}
+   execution_environment: {{ job_template.execution_environment.name }}
+   {% endif -%}
    verbosity: {{ job_template.verbosity }}
    credentials: {{ '\n' -}}
      {%- for credential in job_template.related.credentials -%}
