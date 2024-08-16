@@ -5,7 +5,8 @@ controller_templates_all:
   job_type: run
   playbook: export.yml
   inventory: Demo Inventory
-execution_environment: Default execution environmentverbosity: 0
+execution_environment: Default execution environment
+verbosity: 0
     credentials: 
 		- AAP 
 		- Vault 
@@ -14,7 +15,8 @@ execution_environment: Default execution environmentverbosity: 0
   project: Demo Project
   job_type: run
   playbook: hello_world.yml
-  inventory: Demo Inventoryverbosity: 0
+  inventory: Demo Inventory
+verbosity: 0
     credentials: 
 		- Demo Credential 
 	extra_vars: ---
