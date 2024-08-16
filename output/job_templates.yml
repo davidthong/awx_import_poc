@@ -10,6 +10,7 @@ controller_templates_all:
    credentials: 
 		- AAP 
 		- Vault 
+extra_vars: ---
 - name: Demo Job Template
    project: Demo Project
    job_type: run
@@ -18,3 +19,4 @@ controller_templates_all:
    verbosity: 0
    credentials: 
 		- Demo Credential 
+extra_vars: ---
