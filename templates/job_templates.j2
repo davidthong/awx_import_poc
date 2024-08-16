@@ -7,9 +7,8 @@ controller_templates_all:
      playbook: {{ job_template.playbook }}
      inventory: {{ job_template.inventory.name }} {% if job_template.execution_environment is not none %} 
      execution_environment: {{ job_template.execution_environment.name }} {% endif %}
-     \nconcurrent_jobs_enabled: false
      verbosity: {{ job_template.verbosity }}
      credentials: 
      {% for credential in job_template.related.credentials %}
-        \n- {{ credential.name }} {% endfor %}
+        - {{ credential.name }} {% endfor %}
 {% endfor %}
