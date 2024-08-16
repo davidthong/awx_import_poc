@@ -10,7 +10,7 @@ verbosity: 0
     credentials: 
 		- AAP 
 		- Vault 
-	extra_vars: ---
+extra_vars: ---
 - name: Demo Job Template
   project: Demo Project
   job_type: run
@@ -19,4 +19,4 @@ verbosity: 0
 verbosity: 0
     credentials: 
 		- Demo Credential 
-	extra_vars: ---
+extra_vars: ---
