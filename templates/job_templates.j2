@@ -5,7 +5,7 @@ controller_templates_all:
  {%- if job_template.description != '' -%} 
 {{ '\n' -}}{{ '\t' -}}description: {{ job_template.description }}
  {%- endif -%}
-  project: {{ job_template.project.name }}
+{{ '\n' -}}{{ '\t' -}}project: {{ job_template.project.name }}
   job_type: {{ job_template.job_type }}
   playbook: {{ job_template.playbook }}
   inventory: {{ job_template.inventory.name }}
