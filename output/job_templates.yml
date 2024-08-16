@@ -9,11 +9,14 @@ controller_templates_all:
      execution_environment: Default execution environment
      verbosity: 0
      credentials: 
-             - AAP         - Vault    - name: Demo Job Template
+             - AAP\n 
+             - Vault\n 
+        - name: Demo Job Template
      project: Demo Project
      job_type: run
      playbook: hello_world.yml
      inventory: Demo Inventory 
      verbosity: 0
      credentials: 
-             - Demo Credential 
+             - Demo Credential\n 
+     
