@@ -7,9 +7,9 @@ controller_templates_all:
   playbook: {{ job_template.playbook }}
   inventory: {{ job_template.inventory.name }}
 {%- if job_template.execution_environment is not none -%}
-{{ '\n' -}} execution_environment: {{ job_template.execution_environment.name }}
+{{ '\n' -}}   execution_environment: {{ job_template.execution_environment.name }}
 {%- endif -%}
-      verbosity: {{ job_template.verbosity }}
+{{ '\n' -}}   verbosity: {{ job_template.verbosity }}
     credentials: {{ '\n' -}}
      {%- for credential in job_template.related.credentials -%}
      {{ '\t' -}}{{ '\t' -}}- {{ credential.name }} {{ '\n' -}}
