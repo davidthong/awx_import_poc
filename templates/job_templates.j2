@@ -18,4 +18,7 @@ controller_templates_all:
      {{ '\t' -}}{{ '\t' -}}- {{ credential.name }} {{ '\n' -}}
      {% endfor -%}
 {{ '\t' -}}extra_vars: {{ job_template.extra_vars }}
+{%- if job_template.jb_tags != '' -%} 
+{{ '\n' -}}{{ '\t' -}}job_tags: {{ job_template.job_tags }}
+ {%- endif -%}
 {%- endfor -%}
