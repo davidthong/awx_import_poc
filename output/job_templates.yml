@@ -4,7 +4,8 @@ controller_templates_all:
   project: awx_export
   job_type: run
   playbook: export.yml
-  inventory: Demo Inventoryexecution_environment: Default execution environmentverbosity: 0
+  inventory: Demo Inventory
+execution_environment: Default execution environmentverbosity: 0
     credentials: 
 		- AAP 
 		- Vault 
