@@ -21,3 +21,4 @@ controller_templates_all:
   credentials: 
 		- Demo Credential 
 	extra_vars: ---
+	job_tags: iamjob,please
