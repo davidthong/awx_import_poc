@@ -5,14 +5,14 @@ controller_templates_all:
      job_type: run
      playbook: export.yml
      inventory: Demo Inventory  
-     execution_environment: Default execution environment      concurrent_jobs_enabled: false
+     execution_environment: Default execution environment      \nconcurrent_jobs_enabled: false
      verbosity: 0
      credentials: 
-             - AAP         - Vault    - name: Demo Job Template
+             \n- AAP         \n- Vault    - name: Demo Job Template
      project: Demo Project
      job_type: run
      playbook: hello_world.yml
-     inventory: Demo Inventory      concurrent_jobs_enabled: false
+     inventory: Demo Inventory      \nconcurrent_jobs_enabled: false
      verbosity: 0
      credentials: 
-             - Demo Credential 
+             \n- Demo Credential 
