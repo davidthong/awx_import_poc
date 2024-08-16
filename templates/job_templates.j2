@@ -14,5 +14,5 @@ controller_templates_all:
      {%- for credential in job_template.related.credentials -%}
      {{ '\t' -}}{{ '\t' -}}- {{ credential.name }} {{ '\n' -}}
      {% endfor -%}
-extra_vars: {{ job_template.extra_vars }}
+  extra_vars: {{ job_template.extra_vars }}
 {%- endfor -%}
