@@ -4,18 +4,15 @@ controller_templates_all:
      project: awx_export
      job_type: run
      playbook: export.yml
-     inventory: Demo Inventory
-      execution_environment: Default execution environment
-          concurrent_jobs_enabled: false
+     inventory: Demo Inventory  
+     execution_environment: Default execution environment      concurrent_jobs_enabled: false
      verbosity: 0
-     credentials:         - {'organization': None, 'name': 'AAP', 'credential_type': {'name': 'Red Hat Ansible Automation Platform', 'kind': 'cloud', 'type': 'credential_type'}, 'type': 'credential'}
-                         - {'organization': None, 'name': 'Vault', 'credential_type': {'name': 'Vault', 'kind': 'vault', 'type': 'credential_type'}, 'type': 'credential'}
-                    - name: Demo Job Template
+     credentials: 
+             - AAP         - Vault    - name: Demo Job Template
      project: Demo Project
      job_type: run
      playbook: hello_world.yml
-     inventory: Demo Inventory
-          concurrent_jobs_enabled: false
+     inventory: Demo Inventory      concurrent_jobs_enabled: false
      verbosity: 0
-     credentials:         - {'organization': None, 'name': 'Demo Credential', 'credential_type': {'name': 'Machine', 'kind': 'ssh', 'type': 'credential_type'}, 'type': 'credential'}
-                 
+     credentials: 
+             - Demo Credential 
