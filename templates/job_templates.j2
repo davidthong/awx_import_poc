@@ -2,10 +2,10 @@
 controller_templates_all:
 {% for job_template in job_templates -%}
    - name: {{ job_template.name }}
-     project: {{ job_template.project.name }}
-     job_type: {{ job_template.job_type }}
-     playbook: {{ job_template.playbook }}
-     inventory: {{ job_template.inventory.name }} {% if job_template.execution_environment is not none -%} 
+{{ '\n' -}}{{ '\t' -}}project: {{ job_template.project.name }}
+{{ '\n' -}}{{ '\t' -}}job_type: {{ job_template.job_type }}
+{{ '\n' -}}{{ '\t' -}}playbook: {{ job_template.playbook }}
+{{ '\n' -}}{{ '\t' -}}inventory: {{ job_template.inventory.name }} {% if job_template.execution_environment is not none -%} 
      {{ '\n' -}}{{ '\t' -}}execution_environment: {{ job_template.execution_environment.name }} {% endif -%}
     {{ '\n' -}}{{ '\t' -}}verbosity: {{ job_template.verbosity }}
      credentials: {{ '\n' -}}
