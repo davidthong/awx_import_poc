@@ -1,5 +1,6 @@
 ---
-controller_templates_all:- name: awx_export
+controller_templates_all:
+- name: awx_export
   project: awx_export
   job_type: run
   playbook: export.yml
@@ -7,7 +8,8 @@ controller_templates_all:- name: awx_export
     credentials: 
 		- AAP 
 		- Vault 
-	extra_vars: ---- name: Demo Job Template
+	extra_vars: ---
+- name: Demo Job Template
   project: Demo Project
   job_type: run
   playbook: hello_world.yml
