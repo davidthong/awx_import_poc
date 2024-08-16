@@ -2,7 +2,7 @@
 controller_templates_all:
 {% for job_template in job_templates -%}
   - name: {{ job_template.name }}
-project: {{ job_template.project.name }}
+  project: {{ job_template.project.name }}
 job_type: {{ job_template.job_type }}
 playbook: {{ job_template.playbook }}
 inventory: {{ job_template.inventory.name }}
