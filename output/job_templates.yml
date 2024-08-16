@@ -1,7 +1,7 @@
 ---
 controller_templates_all:
 - name: awx_export
-project: awx_export
+  project: awx_export
 job_type: run
 playbook: export.yml
 inventory: Demo Inventory
@@ -12,7 +12,7 @@ verbosity: 0
 		- Vault 
 	extra_vars: ---
 - name: Demo Job Template
-project: Demo Project
+  project: Demo Project
 job_type: run
 playbook: hello_world.yml
 inventory: Demo Inventory
