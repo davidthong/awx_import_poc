@@ -1,6 +1,7 @@
 ---
 controller_templates_all:
-- name: awx_exportdescription: exportproject: awx_export
+- name: awx_export
+	description: exportproject: awx_export
   job_type: run
   playbook: export.yml
   inventory: Demo Inventory
