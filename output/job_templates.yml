@@ -1,22 +1,22 @@
 ---
 controller_templates_all:
 - name: awx_export
-  project: awx_export
-  job_type: run
-  playbook: export.yml
-  inventory: Demo Inventory
-  execution_environment: Default execution environment
-  verbosity: 0
-  credentials: 
+ project: awx_export
+ job_type: run
+ playbook: export.yml
+ inventory: Demo Inventory
+ execution_environment: Default execution environment
+ verbosity: 0
+ credentials: 
 		- AAP 
 		- Vault 
-extra_vars: ---
+		extra_vars: ---
 - name: Demo Job Template
-  project: Demo Project
-  job_type: run
-  playbook: hello_world.yml
-  inventory: Demo Inventory
-  verbosity: 0
-  credentials: 
+ project: Demo Project
+ job_type: run
+ playbook: hello_world.yml
+ inventory: Demo Inventory
+ verbosity: 0
+ credentials: 
 		- Demo Credential 
-extra_vars: ---
+		extra_vars: ---
