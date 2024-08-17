@@ -22,3 +22,4 @@ controller_templates_all:
 		- Demo Credential 
 	extra_vars: ---
 	job_tags: iamjob,please
+	skip_tags: kadaw
