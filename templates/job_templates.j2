@@ -21,4 +21,10 @@ controller_templates_all:
 {%- if job_template.job_tags != '' -%} 
 {{ '\n' -}}{{ '\t' -}}job_tags: {{ job_template.job_tags }}
  {%- endif -%}
+{%- if job_template.scm_branch != '' -%} 
+{{ '\n' -}}{{ '\t' -}}scm_branch: {{ job_template.scm_branch }}
+ {%- endif -%}
+{%- if job_template.skip_tags != '' -%} 
+{{ '\n' -}}{{ '\t' -}}skip_tags: {{ job_template.skip_tags }}
+ {%- endif -%}
 {%- endfor -%}
