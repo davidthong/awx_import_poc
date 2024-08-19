@@ -27,4 +27,19 @@ controller_templates_all:
 {%- if job_template.skip_tags != '' -%} 
 {{ '\n' -}}{{ '\t' -}}skip_tags: {{ job_template.skip_tags }}
  {%- endif -%}
+{%- if job_template.start_at_task != '' -%} 
+{{ '\n' -}}{{ '\t' -}}start_at_task: {{ job_template.start_at_task }}
+ {%- endif -%}
+{%- if job_template.host_config_key != '' -%} 
+{{ '\n' -}}{{ '\t' -}}host_config_key: {{ job_template.host_config_key }}
+ {%- endif -%}
+ {%- if job_template.webhook_service != '' -%} 
+{{ '\n' -}}{{ '\t' -}}webhook_service: {{ job_template.webhook_service }}
+ {%- endif -%}
+ {%- if job_template.webhook_credential is not none -%} 
+{{ '\n' -}}{{ '\t' -}}webhook_credential: {{ job_template.webhook_credential }}
+ {%- endif -%}
+ {%- if job_template.ask_scm_branch_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_scm_branch_on_launch: {{ job_template.ask_scm_branch_on_launch }}
+ {%- endif -%}
 {%- endfor -%}
