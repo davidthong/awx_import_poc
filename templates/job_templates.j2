@@ -42,4 +42,10 @@ controller_templates_all:
  {%- if job_template.ask_scm_branch_on_launch -%} 
 {{ '\n' -}}{{ '\t' -}}ask_scm_branch_on_launch: {{ job_template.ask_scm_branch_on_launch }}
  {%- endif -%}
+{%- if job_template.ask_diff_mode_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_diff_mode_on_launch: {{ job_template.ask_diff_mode_on_launch }}
+ {%- endif -%}
+{%- if job_template.ask_variables_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_variables_on_launch: {{ job_template.ask_variables_on_launch }}
+ {%- endif -%}
 {%- endfor -%}
