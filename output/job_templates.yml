@@ -24,3 +24,5 @@ controller_templates_all:
 	job_tags: iamjob,please
 	skip_tags: kadaw
 	ask_variables_on_launch: True
+	ask_skip_tags_on_launch: True
+	ask_job_type_on_launch: True
