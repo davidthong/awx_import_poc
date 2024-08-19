@@ -23,6 +23,11 @@ controller_templates_all:
 	extra_vars: ---
 	job_tags: iamjob,please
 	skip_tags: kadaw
-	ask_variables_on_launch: True
+	ask_limit_on_launch: True
 	ask_skip_tags_on_launch: True
 	ask_job_type_on_launch: True
+	ask_verbosity_on_launch: True
+	ask_labels_on_launch: True
+	ask_forks_on_launch: True
+	survey_enabled: True
+	diff_mode: True
