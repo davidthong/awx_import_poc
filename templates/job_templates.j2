@@ -48,4 +48,52 @@ controller_templates_all:
 {%- if job_template.ask_variables_on_launch -%} 
 {{ '\n' -}}{{ '\t' -}}ask_variables_on_launch: {{ job_template.ask_variables_on_launch }}
  {%- endif -%}
+{%- if job_template.ask_limit_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_limit_on_launch: {{ job_template.ask_limit_on_launch }}
+ {%- endif -%}
+ {%- if job_template.ask_tags_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_tags_on_launch: {{ job_template.ask_tags_on_launch }}
+ {%- endif -%}
+ {%- if job_template.ask_skip_tags_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_skip_tags_on_launch: {{ job_template.ask_skip_tags_on_launch }}
+ {%- endif -%}
+ {%- if job_template.ask_job_type_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_job_type_on_launch: {{ job_template.ask_job_type_on_launch }}
+ {%- endif -%}
+  {%- if job_template.ask_verbosity_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_verbosity_on_launch: {{ job_template.ask_verbosity_on_launch }}
+ {%- endif -%}
+  {%- if job_template.ask_inventory_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_inventory_on_launch: {{ job_template.ask_inventory_on_launch }}
+ {%- endif -%}
+{%- if job_template.ask_credential_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_credential_on_launch: {{ job_template.ask_credential_on_launch }}
+ {%- endif -%} 
+{%- if job_template.ask_execution_environment_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_execution_environment_on_launch: {{ job_template.ask_execution_environment_on_launch }}
+ {%- endif -%} 
+{%- if job_template.ask_labels_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_labels_on_launch: {{ job_template.ask_labels_on_launch }}
+ {%- endif -%} 
+{%- if job_template.ask_forks_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_forks_on_launch: {{ job_template.ask_forks_on_launch }}
+ {%- endif -%} 
+{%- if job_template.ask_job_slice_count_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_job_slice_count_on_launch: {{ job_template.ask_job_slice_count_on_launch }}
+ {%- endif -%}
+ {%- if job_template.ask_timeout_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_timeout_on_launch: {{ job_template.ask_timeout_on_launch }}
+ {%- endif -%}
+ {%- if job_template.ask_instance_groups_on_launch -%} 
+{{ '\n' -}}{{ '\t' -}}ask_instance_groups_on_launch: {{ job_template.ask_instance_groups_on_launch }}
+ {%- endif -%}
+ {%- if job_template.survey_enabled -%} 
+{{ '\n' -}}{{ '\t' -}}survey_enabled: {{ job_template.survey_enabled }}
+ {%- endif -%}
+ {%- if job_template.become_enabled -%} 
+{{ '\n' -}}{{ '\t' -}}become_enabled: {{ job_template.become_enabled }}
+ {%- endif -%}
+ {%- if job_template.diff_mode -%} 
+{{ '\n' -}}{{ '\t' -}}diff_mode: {{ job_template.diff_mode }}
+ {%- endif -%}
 {%- endfor -%}
