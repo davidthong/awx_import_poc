@@ -30,10 +30,17 @@
       cmd: "git config --global user.name 'david thong'"
       chdir: "{{ repo_dir }}"
 
-   - name: Export 
+   ## More info on filtering : https://docs.ansible.com/ansible/latest/collections/awx/awx/export_module.html
+   - name: Export job templates
      awx.awx.export:
        job_templates: 'all'
      register: register_job_templates
+
+   - name: Export settings
+     awx.awx.export:
+       settings: 'all'
+     register: register_settings
+
 
    - name: Convert registed output from export to job templates dictionary
      ansible.builtin.set_fact:
@@ -45,9 +52,9 @@
 
    - debug: var=yaml_data
 
-   - debug: var=job_templates
+   - debug: var=register_settings
 
-   - name: Template a file to /etc/file.conf
+   - name: Copy template to working directory
      ansible.builtin.template:
        src: job_templates.j2
        dest: "{{ repo_dir}}/output/job_templates.yml"
@@ -65,5 +72,5 @@
     
    - name: Push the changes to the remote repository
      ansible.builtin.command:
-        cmd: "git push origin main"  # Replace 'main' with your branch name if different
+        cmd: "git push origin main"  
         chdir: "{{ repo_dir }}"
