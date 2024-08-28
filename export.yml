@@ -37,7 +37,7 @@
      register: register_job_templates
 
  # t0aGh62SSNryJjoTjx5MXz0P76mpju
-   - debug: var=controller_host
+   - debug: var=tower_host
 
    - name: Make a GET call to the Tower settings API
      uri:
