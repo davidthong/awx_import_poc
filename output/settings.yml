@@ -51,7 +51,7 @@ controller_settings_all:
     LOG_AGGREGATOR_TYPE: splunk
     LOG_AGGREGATOR_USERNAME: ''
     LOG_AGGREGATOR_PASSWORD: ''
-    LOG_AGGREGATOR_LOGGERS: '['awx', 'activity_stream', 'job_events', 'system_tracking', 'broadcast_websocket']'
+    LOG_AGGREGATOR_LOGGERS: ['awx', 'activity_stream', 'job_events', 'system_tracking', 'broadcast_websocket']
     LOG_AGGREGATOR_INDIVIDUAL_FACTS: False
     LOG_AGGREGATOR_ENABLED: True
     LOG_AGGREGATOR_TOWER_UUID: ''
@@ -64,8 +64,6 @@ controller_settings_all:
     LOG_AGGREGATOR_MAX_DISK_USAGE_PATH: "/var/lib/awx"
     LOG_AGGREGATOR_RSYSLOGD_DEBUG: False
     API_400_ERROR_LOG_FORMAT: status {status_code} received by user {user_name} attempting to access {url_path} from {remote_addr}
-
-
 
     # JOB SETTINGS
 
