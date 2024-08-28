@@ -5,11 +5,11 @@ controller_settings_all:
     ORG_ADMINS_CAN_SEE_ALL_USERS: {{ aap_settings.ORG_ADMINS_CAN_SEE_ALL_USERS }}
     MANAGE_ORGANIZATION_AUTH: {{ aap_settings.MANAGE_ORGANIZATION_AUTH }}
     TOWER_URL_BASE: {{ aap_settings.TOWER_URL_BASE }}
-    REMOTE_HOST_HEADERS {{ aap_settings.REMOTE_HOST_HEADERS }}
-    # PROXY_IP_ALLOWED_LIST: []
-    # CSRF_TRUSTED_ORIGINS: []
-    # LICENSE:
-    #   sku: ES0113909
+    REMOTE_HOST_HEADERS: {{ aap_settings.REMOTE_HOST_HEADERS }}
+    PROXY_IP_ALLOWED_LIST: {{ aap_settings.PROXY_IP_ALLOWED_LIST }}
+    CSRF_TRUSTED_ORIGINS: {{ aap_settings.CSRF_TRUSTED_ORIGINS }}
+    LICENSE:
+      sku: {{ aap_settings.LICENSE.sku }}
     #   usage: Development/Test
     #   pool_id: 8a85f99c7db48285017dc512f3d03f89
     #   satellite: 
