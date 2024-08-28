@@ -28,7 +28,7 @@ controller_settings_all:
     AWX_ISOLATION_BASE_PATH: '/tmp'
     AWX_ISOLATION_SHOW_PATHS: ['/etc/pki/ca-trust:/etc/pki/ca-trust:O', '/usr/share/pki:/usr/share/pki:O']
     AWX_TASK_ENV: {}
-    AWX_RUNNER_KEEPALIVE_SECONDS: {}
+    AWX_RUNNER_KEEPALIVE_SECONDS: 0
     GALAXY_TASK_ENV:
       ANSIBLE_FORCE_COLOR: 'false'
       GIT_SSH_COMMAND: 'ssh -o StrictHostKeyChecking=no'
@@ -42,7 +42,7 @@ controller_settings_all:
     EVENT_STDOUT_MAX_BYTES_DISPLAY: 1024
     MAX_WEBSOCKET_EVENT_RATE: 30
     SCHEDULE_MAX_JOBS: 10
-    AWX_ANSIBLE_CALLBACK_PLUGINS: 10
+    AWX_ANSIBLE_CALLBACK_PLUGINS: []
     DEFAULT_JOB_TIMEOUT: 0
     DEFAULT_JOB_IDLE_TIMEOUT: 0
     DEFAULT_INVENTORY_UPDATE_TIMEOUT: 0
