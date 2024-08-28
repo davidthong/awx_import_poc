@@ -1,0 +1,34 @@
+controller_settings_all:
+  settings:
+    ACTIVITY_STREAM_ENABLED: True
+    ACTIVITY_STREAM_ENABLED_FOR_INVENTORY_SYNC: True
+    ORG_ADMINS_CAN_SEE_ALL_USERS: True
+    MANAGE_ORGANIZATION_AUTH: True
+    TOWER_URL_BASE: https://aap
+    REMOTE_HOST_HEADERS: ['192.168', 'davidaap']
+    PROXY_IP_ALLOWED_LIST: []
+    CSRF_TRUSTED_ORIGINS: []
+    LICENSE:
+      sku: ES0113909
+      usage: Development/Test
+      pool_id: 8a85f99c7db48285017dc512f3d03f89
+      satellite: 
+      valid_key: True
+      license_date: 1798779599
+      license_type: enterprise
+      product_name: Red Hat Ansible Automation Platform
+      support_level: Self-Support
+      account_number: 1049669
+      instance_count: 2500
+      subscription_id: 10479466
+      subscription_name: Employee SKU
+    REDHAT_USERNAME: ''
+    SUBSCRIPTIONS_USERNAME: 
+    #DEFAULT_EXECUTION_ENVIRONMENT: 3
+    CUSTOM_VENV_PATHS: []
+    INSIGHTS_TRACKING_STATE: []
+    AUTOMATION_ANALYTICS_LAST_GATHER: 
+    AUTOMATION_ANALYTICS_LAST_ENTRIES: 
+    AUTOMATION_ANALYTICS_GATHER_INTERVAL: 14400
+    IS_K8S: False
+    UI_NEXT: True
