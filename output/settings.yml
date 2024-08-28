@@ -21,6 +21,52 @@ controller_settings_all:
     IS_K8S: False
     UI_NEXT: True
 
+    # SYSTEM AUTHENTICATION SETTINGS
+
+    SESSION_COOKIE_AGE: 1800
+    SESSIONS_PER_USER: -1
+    DISABLE_LOCAL_AUTH: False
+    AUTH_BASIC_ENABLED: True
+    OAUTH2_PROVIDER:
+      ACCESS_TOKEN_EXPIRE_SECONDS: 31536000000
+      AUTHORIZATION_CODE_EXPIRE_SECONDS: 600
+      REFRESH_TOKEN_EXPIRE_SECONDS: 2628000
+    ALLOW_OAUTH2_FOR_EXTERNAL_USERS: False
+    LOGIN_REDIRECT_OVERRIDE: ''
+    ALLOW_METRICS_FOR_ANONYMOUS_USERS: False
+    AUTHENTICATION_BACKENDS: ['awx.sso.backends.LDAPBackend', 'awx.sso.backends.TACACSPlusBackend', 'awx.main.backends.AWXModelBackend']
+    SOCIAL_AUTH_ORGANIZATION_MAP: 
+    SOCIAL_AUTH_TEAM_MAP: 
+    SOCIAL_AUTH_USER_FIELDS: 
+    SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL: False
+    LOCAL_PASSWORD_MIN_LENGTH: 0
+    LOCAL_PASSWORD_MIN_DIGITS: 0
+    LOCAL_PASSWORD_MIN_UPPER: 0
+    LOCAL_PASSWORD_MIN_SPECIAL: 0
+
+    # SYSTEM LOGGING SETTINGS
+
+    LOG_AGGREGATOR_HOST: 'https://192.168.0.232:8088/services/collector/event'
+    LOG_AGGREGATOR_PORT: 
+    LOG_AGGREGATOR_TYPE: splunk
+    LOG_AGGREGATOR_USERNAME: ''
+    LOG_AGGREGATOR_PASSWORD: ''
+    LOG_AGGREGATOR_LOGGERS: '['awx', 'activity_stream', 'job_events', 'system_tracking', 'broadcast_websocket']'
+    LOG_AGGREGATOR_INDIVIDUAL_FACTS: False
+    LOG_AGGREGATOR_ENABLED: True
+    LOG_AGGREGATOR_TOWER_UUID: ''
+    LOG_AGGREGATOR_PROTOCOL: https
+    LOG_AGGREGATOR_TCP_TIMEOUT: 5
+    LOG_AGGREGATOR_VERIFY_CERT: False
+    LOG_AGGREGATOR_LEVEL: INFO
+    LOG_AGGREGATOR_ACTION_QUEUE_SIZE: 131072
+    LOG_AGGREGATOR_ACTION_MAX_DISK_USAGE_GB: 1
+    LOG_AGGREGATOR_MAX_DISK_USAGE_PATH: "/var/lib/awx"
+    LOG_AGGREGATOR_RSYSLOGD_DEBUG: False
+    API_400_ERROR_LOG_FORMAT: status {status_code} received by user {user_name} attempting to access {url_path} from {remote_addr}
+
+
+
     # JOB SETTINGS
 
     AD_HOC_COMMANDS: ['command', 'shell', 'yum', 'apt', 'apt_key', 'apt_repository', 'apt_rpm', 'service', 'group', 'user', 'mount', 'ping', 'selinux', 'setup', 'win_ping', 'win_service', 'win_updates', 'win_group', 'win_user']
