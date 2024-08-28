@@ -36,11 +36,18 @@
        job_templates: 'all'
      register: register_job_templates
 
-   - name: Export settings
-     awx.awx.export:
-       settings: 'all'
-     register: register_settings
+ # t0aGh62SSNryJjoTjx5MXz0P76mpju
+    - debug: var=controller_host
 
+    - name: Make a GET call to the Tower settings API
+      uri:
+        url: "{{ controller_host }}/api/v2/settings/"
+        method: GET
+        headers:
+          Authorization: "Bearer "
+          Content-Type: "application/json"
+        validate_certs: no  # Set to yes if using HTTPS with valid certs
+      register: tower_settings_response
 
    - name: Convert registed output from export to job templates dictionary
      ansible.builtin.set_fact:
