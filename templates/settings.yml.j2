@@ -10,34 +10,27 @@ controller_settings_all:
     CSRF_TRUSTED_ORIGINS: {{ aap_settings.CSRF_TRUSTED_ORIGINS }}
     LICENSE:
       sku: {{ aap_settings.LICENSE.sku }}
-    #   usage: Development/Test
-    #   pool_id: 8a85f99c7db48285017dc512f3d03f89
-    #   satellite: 
-    #   valid_key: true
-    #   license_date: 1798779599
-    #   license_type: enterprise
-    #   product_name: Red Hat Ansible Automation Platform
-    #   support_level: Self-Support
-    #   account_number: '1049669'
-    #   instance_count: 2500
-    #   subscription_id: '10479466'
-    #   subscription_name: Employee SKU
-    # REDHAT_USERNAME: ''
-    # REDHAT_PASSWORD: ''
-    # SUBSCRIPTIONS_USERNAME: dthong@redhat.com
-    # SUBSCRIPTIONS_PASSWORD: "$encrypted$"
-    # AUTOMATION_ANALYTICS_URL: https://cloud.redhat.com/api/ingress/v1/upload
-    # INSTALL_UUID: 3c0e4f77-7c82-4866-91e6-5c2746919096
-    # DEFAULT_CONTROL_PLANE_QUEUE_NAME: controlplane
-    # DEFAULT_EXECUTION_QUEUE_NAME: default
-    # DEFAULT_EXECUTION_ENVIRONMENT: 3
-    # CUSTOM_VENV_PATHS: []
-    # INSIGHTS_TRACKING_STATE: true
-    # AUTOMATION_ANALYTICS_LAST_GATHER: 
-    # AUTOMATION_ANALYTICS_LAST_ENTRIES: ''
-    # AUTOMATION_ANALYTICS_GATHER_INTERVAL: 14400
-    # IS_K8S: false
-    # UI_NEXT: true
-    # SUBSCRIPTION_USAGE_MODEL: unique_managed_hosts
-    # CLEANUP_HOST_METRICS_LAST_TS: '2024-08-15T06:21:30.414668Z'
-    # HOST_METRIC_SUMMARY_TASK_LAST_TS: '2024-08-27T00:05:16.540941Z'
+      usage: {{ aap_settings.LICENSE.usage }}
+      pool_id: {{ aap_settings.LICENSE.pool_id }}
+      satellite: {{ aap_settings.LICENSE.satellite }}
+      valid_key: {{ aap_settings.LICENSE.valid_key }}
+      license_date: {{ aap_settings.LICENSE.license_date }}
+      license_type: {{ aap_settings.LICENSE.license_type }}
+      product_name: {{ aap_settings.LICENSE.product_name }}
+      support_level: {{ aap_settings.LICENSE.support_level }}
+      account_number: {{ aap_settings.LICENSE.account_number }}
+      instance_count: {{ aap_settings.LICENSE.instance_count }}
+      subscription_id: {{ aap_settings.LICENSE.subscription_id }}
+      subscription_name: {{ aap_settings.LICENSE.subscription_name }}
+    REDHAT_USERNAME: {{ aap_settings.REDHAT_USERNAME}}
+    REDHAT_PASSWORD: ''
+    SUBSCRIPTIONS_USERNAME: {{ aap_settings.REDHAT_USERNAME}}
+    SUBSCRIPTIONS_PASSWORD: ''
+    #DEFAULT_EXECUTION_ENVIRONMENT: 3
+    CUSTOM_VENV_PATHS: {{ aap_settings.CUSTOM_VENV_PATHS }}
+    INSIGHTS_TRACKING_STATE: {{ aap_settings.CUSTOM_VENV_PATHS }}
+    AUTOMATION_ANALYTICS_LAST_GATHER: {{ aap_settings.AUTOMATION_ANALYTICS_LAST_GATHER }}
+    AUTOMATION_ANALYTICS_LAST_ENTRIES: {{ aap_settings.AUTOMATION_ANALYTICS_LAST_ENTRIES }}
+    AUTOMATION_ANALYTICS_GATHER_INTERVAL: {{ aap_settings.AUTOMATION_ANALYTICS_GATHER_INTERVAL }}
+    IS_K8S: {{ aap_settings.IS_K8S }}
+    UI_NEXT: {{ aap_settings.UI_NEXT }}
