@@ -31,3 +31,14 @@ controller_templates_all:
 	ask_forks_on_launch: True
 	survey_enabled: True
 	diff_mode: True
+- name: update app config
+	project: c as code
+  job_type: run
+  playbook: playbooks/controller_config.yml
+  inventory: config_as_code
+	execution_environment: Default execution environment
+	verbosity: 0
+  credentials: 
+		- AAP 
+		- vault for config_code 
+	extra_vars: ---
