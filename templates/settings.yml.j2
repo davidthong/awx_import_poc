@@ -22,7 +22,7 @@ controller_settings_all:
       instance_count: {{ aap_settings.LICENSE.instance_count }}
       subscription_id: {{ aap_settings.LICENSE.subscription_id }}
       subscription_name: {{ aap_settings.LICENSE.subscription_name }}
-    REDHAT_USERNAME: {{ aap_settings.REDHAT_USERNAME | default('') }}
+    REDHAT_USERNAME: '{{ aap_settings.REDHAT_USERNAME | default('') }}'
     SUBSCRIPTIONS_USERNAME: {{ aap_settings.REDHAT_USERNAME | default('')}}
     #DEFAULT_EXECUTION_ENVIRONMENT: 3
     CUSTOM_VENV_PATHS: {{ aap_settings.CUSTOM_VENV_PATHS | default([])}}
