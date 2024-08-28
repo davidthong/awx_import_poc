@@ -42,7 +42,7 @@
 
    - name: Make a GET call to the Tower settings API
      uri:
-      url: "https://{{ controller_host }}/api/v2/settings/"
+      url: "https://{{ controller_host }}/api/v2/settings/all/"
       method: GET
       headers:
         Authorization: "Bearer {{ aap_bearer_token }}"
