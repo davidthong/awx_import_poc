@@ -1,0 +1,45 @@
+controller_settings_all:
+  settings:
+    ACTIVITY_STREAM_ENABLED: True
+    # ACTIVITY_STREAM_ENABLED_FOR_INVENTORY_SYNC: true
+    # ORG_ADMINS_CAN_SEE_ALL_USERS: true
+    # MANAGE_ORGANIZATION_AUTH: true
+    # TOWER_URL_BASE: https://aap
+    # REMOTE_HOST_HEADERS:
+    # - REMOTE_ADDR
+    # - REMOTE_HOST
+    # PROXY_IP_ALLOWED_LIST: []
+    # CSRF_TRUSTED_ORIGINS: []
+    # LICENSE:
+    #   sku: ES0113909
+    #   usage: Development/Test
+    #   pool_id: 8a85f99c7db48285017dc512f3d03f89
+    #   satellite: 
+    #   valid_key: true
+    #   license_date: 1798779599
+    #   license_type: enterprise
+    #   product_name: Red Hat Ansible Automation Platform
+    #   support_level: Self-Support
+    #   account_number: '1049669'
+    #   instance_count: 2500
+    #   subscription_id: '10479466'
+    #   subscription_name: Employee SKU
+    # REDHAT_USERNAME: ''
+    # REDHAT_PASSWORD: ''
+    # SUBSCRIPTIONS_USERNAME: dthong@redhat.com
+    # SUBSCRIPTIONS_PASSWORD: "$encrypted$"
+    # AUTOMATION_ANALYTICS_URL: https://cloud.redhat.com/api/ingress/v1/upload
+    # INSTALL_UUID: 3c0e4f77-7c82-4866-91e6-5c2746919096
+    # DEFAULT_CONTROL_PLANE_QUEUE_NAME: controlplane
+    # DEFAULT_EXECUTION_QUEUE_NAME: default
+    # DEFAULT_EXECUTION_ENVIRONMENT: 3
+    # CUSTOM_VENV_PATHS: []
+    # INSIGHTS_TRACKING_STATE: true
+    # AUTOMATION_ANALYTICS_LAST_GATHER: 
+    # AUTOMATION_ANALYTICS_LAST_ENTRIES: ''
+    # AUTOMATION_ANALYTICS_GATHER_INTERVAL: 14400
+    # IS_K8S: false
+    # UI_NEXT: true
+    # SUBSCRIPTION_USAGE_MODEL: unique_managed_hosts
+    # CLEANUP_HOST_METRICS_LAST_TS: '2024-08-15T06:21:30.414668Z'
+    # HOST_METRIC_SUMMARY_TASK_LAST_TS: '2024-08-27T00:05:16.540941Z'
