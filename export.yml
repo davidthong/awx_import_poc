@@ -66,10 +66,15 @@
 
    - debug: var=aap_settings
 
-   - name: Copy template to working directory
+   - name: Copy job template to working directory
      ansible.builtin.template:
        src: job_templates.j2
        dest: "{{ repo_dir}}/output/job_templates.yml"
+  
+   - name: Copy settings template to working directory
+     ansible.builtin.template:
+       src: settings.yml.j2
+       dest: "{{ repo_dir}}/output/settings.yml"
 
    - name: Add the file to the Git repository
      ansible.builtin.command:
