@@ -1,10 +1,10 @@
 controller_settings_all:
   settings:
-    ACTIVITY_STREAM_ENABLED: {{ aap_settings.ACTIVITY_STREAM_ENABLED }}
-    ACTIVITY_STREAM_ENABLED_FOR_INVENTORY_SYNC: {{ aap_settings.ACTIVITY_STREAM_ENABLED_FOR_INVENTORY_SYNC }}
-    ORG_ADMINS_CAN_SEE_ALL_USERS: {{ aap_settings.ORG_ADMINS_CAN_SEE_ALL_USERS }}
-    MANAGE_ORGANIZATION_AUTH: {{ aap_settings.MANAGE_ORGANIZATION_AUTH }}
-    TOWER_URL_BASE: {{ aap_settings.TOWER_URL_BASE }}
+    ACTIVITY_STREAM_ENABLED: '{{ aap_settings.ACTIVITY_STREAM_ENABLED }}'
+    ACTIVITY_STREAM_ENABLED_FOR_INVENTORY_SYNC: '{{ aap_settings.ACTIVITY_STREAM_ENABLED_FOR_INVENTORY_SYNC }}'
+    ORG_ADMINS_CAN_SEE_ALL_USERS: '{{ aap_settings.ORG_ADMINS_CAN_SEE_ALL_USERS }}'
+    MANAGE_ORGANIZATION_AUTH: '{{ aap_settings.MANAGE_ORGANIZATION_AUTH }}'
+    TOWER_URL_BASE: '{{ aap_settings.TOWER_URL_BASE }}'
     REMOTE_HOST_HEADERS: {{ aap_settings.REMOTE_HOST_HEADERS }}
     PROXY_IP_ALLOWED_LIST: {{ aap_settings.PROXY_IP_ALLOWED_LIST }}
     CSRF_TRUSTED_ORIGINS: {{ aap_settings.CSRF_TRUSTED_ORIGINS }}
@@ -13,22 +13,22 @@ controller_settings_all:
       usage: {{ aap_settings.LICENSE.usage }}
       pool_id: {{ aap_settings.LICENSE.pool_id }}
       satellite: {{ aap_settings.LICENSE.satellite }}
-      valid_key: {{ aap_settings.LICENSE.valid_key }}
+      valid_key: '{{ aap_settings.LICENSE.valid_key }}'
       license_date: {{ aap_settings.LICENSE.license_date }}
       license_type: {{ aap_settings.LICENSE.license_type }}
       product_name: {{ aap_settings.LICENSE.product_name }}
-      support_level: {{ aap_settings.LICENSE.support_level }}
-      account_number: {{ aap_settings.LICENSE.account_number }}
-      instance_count: {{ aap_settings.LICENSE.instance_count }}
-      subscription_id: {{ aap_settings.LICENSE.subscription_id }}
-      subscription_name: {{ aap_settings.LICENSE.subscription_name }}
+      support_level:'{{ aap_settings.LICENSE.support_level }}'
+      account_number: '{{ aap_settings.LICENSE.account_number }}'
+      instance_count: '{{ aap_settings.LICENSE.instance_count }}'
+      subscription_id:' {{ aap_settings.LICENSE.subscription_id }}'
+      subscription_name: '{{ aap_settings.LICENSE.subscription_name }}'
     REDHAT_USERNAME: '{{ aap_settings.REDHAT_USERNAME | default('') }}'
     SUBSCRIPTIONS_USERNAME: {{ aap_settings.REDHAT_USERNAME | default('')}}
     #DEFAULT_EXECUTION_ENVIRONMENT: 3
     CUSTOM_VENV_PATHS: {{ aap_settings.CUSTOM_VENV_PATHS | default([])}}
     INSIGHTS_TRACKING_STATE: {{ aap_settings.CUSTOM_VENV_PATHS }}
     AUTOMATION_ANALYTICS_LAST_GATHER: {{ aap_settings.AUTOMATION_ANALYTICS_LAST_GATHER  }}
-    AUTOMATION_ANALYTICS_LAST_ENTRIES: {{ aap_settings.AUTOMATION_ANALYTICS_LAST_ENTRIES | default('') }}
-    AUTOMATION_ANALYTICS_GATHER_INTERVAL: {{ aap_settings.AUTOMATION_ANALYTICS_GATHER_INTERVAL }}
-    IS_K8S: {{ aap_settings.IS_K8S }}
-    UI_NEXT: {{ aap_settings.UI_NEXT }}
+    AUTOMATION_ANALYTICS_LAST_ENTRIES: '{{ aap_settings.AUTOMATION_ANALYTICS_LAST_ENTRIES | default('') }}'
+    AUTOMATION_ANALYTICS_GATHER_INTERVAL: '{{ aap_settings.AUTOMATION_ANALYTICS_GATHER_INTERVAL }}'
+    IS_K8S: '{{ aap_settings.IS_K8S }}'
+    UI_NEXT: '{{ aap_settings.UI_NEXT }}'
