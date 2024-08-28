@@ -41,12 +41,12 @@
 
    - name: Make a GET call to the Tower settings API
      uri:
-        url: "{{ controller_host }}/api/v2/settings/"
-        method: GET
-        headers:
-          Authorization: "Bearer "
-          Content-Type: "application/json"
-         validate_certs: no  # Set to yes if using HTTPS with valid certs
+      url: "{{ controller_host }}/api/v2/settings/"
+      method: GET
+      headers:
+        Authorization: "Bearer "
+        Content-Type: "application/json"
+      validate_certs: no  # Set to yes if using HTTPS with valid certs
      register: tower_settings_response
 
    - name: Convert registed output from export to job templates dictionary
