@@ -48,11 +48,15 @@
         Authorization: "Bearer {{ aap_bearer_token }}"
         Content-Type: "application/json"
       validate_certs: no  # Set to yes if using HTTPS with valid certs
-     register: tower_settings_response
+     register: aap_controller_settings_response
 
    - name: Convert registed output from export to job templates dictionary
      ansible.builtin.set_fact:
        job_templates: "{{ register_job_templates.assets.job_templates}}"
+
+   - name: Convert registed output from api call to settings dictionary
+     ansible.builtin.set_fact:
+       aap_settings: "{{ aap_controller_settings_response.json }}"
 
    - name: Convert JSON to YAML
      ansible.builtin.set_fact:
@@ -60,7 +64,7 @@
 
    - debug: var=yaml_data
 
-   - debug: var=tower_settings_response
+   - debug: var=aap_settings
 
    - name: Copy template to working directory
      ansible.builtin.template:
