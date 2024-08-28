@@ -78,6 +78,11 @@
 
    - name: Add the file to the Git repository
      ansible.builtin.command:
+      cmd: "git status"
+      chdir: "{{ repo_dir }}"
+
+   - name: Add the file to the Git repository
+     ansible.builtin.command:
       cmd: "git add . "
       chdir: "{{ repo_dir }}"
 
