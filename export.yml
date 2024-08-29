@@ -38,7 +38,10 @@
      register: register_job_templates
 
    - debug:
-        msg: "Current SCM branch is : {{ awx_project_scm_branch }}"
+        msg: 
+           - "Current SCM branch is : {{ awx_job_scm_branch }}"
+           - "Current Job ID is  {{ awx_job_id }}"
+
 
    - name: Make a GET call to the Tower settings API
      uri:
