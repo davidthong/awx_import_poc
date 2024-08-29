@@ -37,10 +37,10 @@
        job_templates: 'all'
      register: register_job_templates
 
-   - debug: var=awx_job_scm_branch
+   - debug: var=awx_project_scm_branch
    - debug: var=awx_job_id
    - debug: var=tower_job_id
-   - debug: var=tower_job_scm_branch
+   - debug: var=tower_project_scm_branch
 
 
    - name: Make a GET call to the Tower settings API
