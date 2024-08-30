@@ -37,11 +37,11 @@
        job_templates: 'all'
      register: register_job_templates
 
-   - debug: var=awx_project_scm_branch
-   - debug: var=awx_job_id
-   - debug: var=tower_job_id
-   - debug: var=tower_project_scm_branch
+   - name: Create Branch 
+     ansible.builtin.set_fact:
+        export_branch: "aap_export_{{ ansible_date_time.iso8601 }}_jobID_{{ awx_job_id }}"
 
+   - debug: var=export_branch
 
    - name: Make a GET call to the Tower settings API
      uri:
