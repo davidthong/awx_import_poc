@@ -13,6 +13,11 @@
 
   tasks:
 
+
+   - name: Display version of awx.awx
+     ansible.builtin.command:
+      cmd: "ansible-galaxy collection list awx.awx"
+     
    - name: Clone the repository if it doesn't exist
      ansible.builtin.git:
       repo: "{{ repo_url }}"
@@ -37,7 +42,7 @@
        job_templates: 'all'
      register: register_job_templates
 
-   - name: Create Branch 
+   - name: Generate Branch 
      ansible.builtin.set_fact:
         export_branch: "aap_export_{{ ansible_date_time.iso8601 }}_jobID_{{ awx_job_id }}"
 
