@@ -20,7 +20,7 @@
      
    - name: Display version of awxkit
      ansible.builtin.command:
-      cmd: "pip list"
+      cmd: "pip3 list"
 
    - name: Clone the repository if it doesn't exist
      ansible.builtin.git:
