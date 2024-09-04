@@ -15,7 +15,7 @@
 
     - name: Return ID of Org based on name input
       ansible.builtin.uri:
-        url: "https://{{ controller_hostname }}/api/v2/organizations/"
+        url: "https://{{ controller_host }}/api/v2/organizations/"
         method: GET
         user: "{{ controller_username }}"
         password: "{{ controller_password }}"
