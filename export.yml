@@ -18,6 +18,10 @@
      ansible.builtin.command:
       cmd: "ansible-galaxy collection list awx.awx"
      
+   - name: Display version of awxkit
+     ansible.builtin.command:
+      cmd: "pip show awxkit"
+
    - name: Clone the repository if it doesn't exist
      ansible.builtin.git:
       repo: "{{ repo_url }}"
