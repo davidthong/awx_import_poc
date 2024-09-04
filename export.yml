@@ -29,7 +29,7 @@
     - name: get list of all orgs
 
       ansible.builtin.set_fact:
-          orgs: "{{ orgs + [item.name] | default[] }} "
+          orgs: "{{ orgs + ['item.name'] | default[] }} "
       loop: "{{ aap_orgs.json.results }}"
 
  
