@@ -16,7 +16,7 @@
     - name: Fetch organization information by name
       awx.awx.organization:
         name: "Doggies"  # Replace with the actual organization name
-        register: org_info
+      register: org_info
 
     - debug: var=org_info
     # - name: Return ID of Org based on name input
