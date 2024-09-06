@@ -13,26 +13,32 @@
 
   tasks:
 
-    - name: Return ID of Org based on name input
-      ansible.builtin.uri:
-        url: "https://{{ controller_host }}/api/v2/organizations/"
-        method: GET
-        user: "{{ controller_username }}"
-        password: "{{ controller_password }}"
-        force_basic_auth: yes
-        return_content: yes
-        validate_certs: no  # Set to yes if using HTTPS with valid certs  
-      register: aap_orgs
+    - name: Fetch organization information by name
+      awx.awx.organization:
+        name: "Doggies"  # Replace with the actual organization name
+        register: org_info
 
-    - debug: var=aap_orgs.json.results 
+    - debug: var=org_info
+    # - name: Return ID of Org based on name input
+    #   ansible.builtin.uri:
+    #     url: "https://{{ controller_host }}/api/v2/organizations/"
+    #     method: GET
+    #     user: "{{ controller_username }}"
+    #     password: "{{ controller_password }}"
+    #     force_basic_auth: yes
+    #     return_content: yes
+    #     validate_certs: no  # Set to yes if using HTTPS with valid certs  
+    #   register: aap_orgs
 
-    - name: get list of all orgs
+    # - debug: var=aap_orgs.json.results 
 
-      ansible.builtin.set_fact:
-          orgs: "{{ aap_orgs.json.results | map(attribute='name') | list }}"
+    # - name: get list of all orgs
+
+    #   ansible.builtin.set_fact:
+    #       orgs: "{{ aap_orgs.json.results | map(attribute='name') | list }}"
 
     
-    - debug: var=orgs
+    # - debug: var=orgs
 
  
 

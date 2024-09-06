@@ -1,0 +1,21 @@
+- name: local playbook
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+
+     - name: set json
+       ansible.builtin.set_fact:
+          jayson_tatum: "{{ lookup('file', 'jason.json') | from_json }}"
+
+       
+
+  
+     - debug: var=jayson_tatum
+
+     - name: Extract user info for Bob
+       set_fact:
+        bob_info: "{{ jayson_tatum['aap_orgs_response.json.results'] | selectattr('name', 'equalto', 'aap_precheck') | first }}"
+
+     - debug: var=bob_info.id
