@@ -110,36 +110,36 @@
 
   #  - debug: var=aap_settings
 
-  #  - name: Copy job template to working directory
-  #    ansible.builtin.template:
-  #      src: job_templates.j2
-  #      dest: "{{ repo_dir}}/output/job_templates.yml"
-  
-  #  - name: Copy settings template to working directory
-  #    ansible.builtin.template:
-  #      src: settings.yml.j2
-  #      dest: "{{ repo_dir}}/output/settings.yml"
+    - name: Copy job template to working directory
+      ansible.builtin.template:
+        src: projects.ymk.j2
+        dest: "{{ repo_dir}}/output/projects.yml"
 
-  #  - name: Add the file to the Git repository
-  #    ansible.builtin.command:
-  #     cmd: "git status"
-  #     chdir: "{{ repo_dir }}"
+    # - name: Copy settings template to working directory
+    #   ansible.builtin.template:
+    #     src: settings.yml.j2
+    #     dest: "{{ repo_dir}}/output/settings.yml"
 
-  #  - name: Add the file to the Git repository
-  #    ansible.builtin.command:
-  #     cmd: "git add . "
-  #     chdir: "{{ repo_dir }}"
+    - name: Add the file to the Git repository
+      ansible.builtin.command:
+      cmd: "git status"
+      chdir: "{{ repo_dir }}"
 
-  #  - name: Commit the changes
-  #    ansible.builtin.command:
-  #     cmd: git commit -m 'update templates yaml'
-  #     chdir: "{{ repo_dir }}"
-  #    ignore_errors: yes
+    - name: Add the file to the Git repository
+      ansible.builtin.command:
+      cmd: "git add . "
+      chdir: "{{ repo_dir }}"
+
+    - name: Commit the changes
+      ansible.builtin.command:
+      cmd: git commit -m 'update templates yaml'
+      chdir: "{{ repo_dir }}"
+      ignore_errors: yes
     
-  #  - name: Push the changes to the remote repository
-  #    ansible.builtin.command:
-  #       cmd: "git push origin main"  
-  #       chdir: "{{ repo_dir }}"
+    - name: Push the changes to the remote repository
+      ansible.builtin.command:
+        cmd: "git push origin main"  
+        chdir: "{{ repo_dir }}"
 
   post_tasks:
     - name: "Delete the Authentication Token used"
