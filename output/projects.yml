@@ -1,20 +1,28 @@
+
 # Documentation: https://galaxy.ansible.com/ui/repo/published/infra/controller_configuration/content/role/projects/
 ---
-controller_projects_dev:
-- name: Demo Project
-organization: Default
-  scm_branch: 
-scm_type: git
-scm_url: https://github.com/ansible/ansible-tower-samples
-- name: awx_export
-organization: Default
-  scm_branch: 
-scm_type: git
-scm_update_on_launch: True
-scm_url: https://github.com/davidthong/awx_import_poc.git
-- name: c as code
-organization: Default
-  scm_branch: 
-scm_type: git
-scm_update_on_launch: True
-scm_url: https://github.com/davidthong/aap_configuration_template.git
+controller_projects_{{ env }}:
+{%- for project in projects -%}
+{{ '\n' -}} - name: {{ project.name }}
+ {%- if project.description != '' -%} 
+{{ '\n' -}}  description: {{ project.description }}
+ {%- endif -%}
+{{ '\n' -}}  organization: {{ project.summary_fields.organization.name }}
+  scm_branch: {{ project.scm_branch }}
+{%- if project.scm_clean -%} 
+{{ '\n' -}}  scm_clean: {{ project.scm_clean }}
+ {%- endif -%}
+{%- if project.scm_delete_on_update -%} 
+{{ '\n' -}}  scm_delete_on_update: {{ project.scm_delete_on_update }}
+ {%- endif -%}
+{%- if project.scm_type != '' -%} 
+{{ '\n' -}}  scm_type: {{ project.scm_type }}
+ {%- endif -%}
+{%- if project.scm_update_on_launch -%} 
+{{ '\n' -}}  scm_update_on_launch: {{ project.scm_update_on_launch }}
+ {%- endif -%}
+{%- if project.scm_url != '' -%} 
+{{ '\n' -}}  scm_url: {{ project.scm_url }}
+ {%- endif -%}
+{%- endfor -%}
+ 
