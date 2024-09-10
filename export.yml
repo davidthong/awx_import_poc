@@ -79,7 +79,7 @@
         state: absent
     
     - name: Ensure the directory exists
-      ansible.builtin:
+      ansible.builtin.file:
         path: "{{ repo_dir}}/output/"   # Replace with the directory path you want to create
         state: directory
   
