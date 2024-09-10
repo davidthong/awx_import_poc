@@ -110,9 +110,9 @@
 
   #  - debug: var=aap_settings
 
-    - name: Copy job template to working directory
+    - name: Copy projects to working directory
       ansible.builtin.template:
-        src: projects.ymk.j2
+        src: projects.yml.j2
         dest: "{{ repo_dir}}/output/projects.yml"
 
     # - name: Copy settings template to working directory
