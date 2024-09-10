@@ -62,6 +62,17 @@
         clone: yes
         update: yes
       no_log: true
+
+    - name: Generate Branch 
+      ansible.builtin.set_fact:
+          export_branch: "aap_export_{{ ansible_date_time.year }}_{{ ansible_date_time.month }}_{{ ansible_date_time.day }}_jobID_{{ awx_job_id }}"
+
+    - debug: var=export_branch
+  
+    - name: config email
+      ansible.builtin.command:
+        cmd: "git checkout -b {{ export_branch }}"
+        chdir: "{{ repo_dir }}"
       
     - name: config email
       ansible.builtin.command:
@@ -72,6 +83,8 @@
       ansible.builtin.command:
         cmd: "git config --global user.name 'david thong'"
         chdir: "{{ repo_dir }}"
+    
+
 
     - name: Cleanup working directory
       ansible.builtin.file:
@@ -84,17 +97,9 @@
         state: directory
   
 
-  #  ## More info on filtering : https://docs.ansible.com/ansible/latest/collections/awx/awx/export_module.html
-    - name: Export job templates
-      awx.awx.export:
-        job_templates: 'all'
-      register: register_job_templates
 
-    - name: Generate Branch 
-      ansible.builtin.set_fact:
-          export_branch: "aap_export_{{ ansible_date_time.year }}_{{ ansible_date_time.month }}_{{ ansible_date_time.day }}_jobID_{{ awx_job_id }}"
 
-    - debug: var=export_branch
+ 
 
   #  - name: Make a GET call to the Tower settings API
   #    uri:
