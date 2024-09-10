@@ -73,6 +73,17 @@
         cmd: "git config --global user.name 'david thong'"
         chdir: "{{ repo_dir }}"
 
+    - name: Cleanup working directory
+      ansible.builtin.file:
+        path: "{{ repo_dir}}/output/"  # Replace with the directory you want to remove
+        state: absent
+    
+    - name: Ensure the directory exists
+      ansible.builtin:
+        path: "{{ repo_dir}}/output/"   # Replace with the directory path you want to create
+        state: directory
+  
+
   #  ## More info on filtering : https://docs.ansible.com/ansible/latest/collections/awx/awx/export_module.html
     - name: Export job templates
       awx.awx.export:
