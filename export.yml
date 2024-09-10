@@ -9,7 +9,7 @@
     - repo_dir: /tmp/export
     - controller_host: 192.168.0.224
     - org_id: 1
-    - controller_api_plugin: awx.awx
+    - controller_api_plugin: awx.awx.controller_api
   vars_files:
     - vault.yml
 
