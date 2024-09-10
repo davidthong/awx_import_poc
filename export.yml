@@ -15,6 +15,7 @@
     - controller_hostname: "{{ controller_host | default(groups['automationcontroller'][0]) }}:{{ controller_port | default(443) }}"
     - controller_username: "{{ controller_user | default('admin') }}"
     - controller_password: "{{ controller_pass }}"
+    - env: dev
   vars_files:
     - vault.yml
 
