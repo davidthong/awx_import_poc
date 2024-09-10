@@ -15,6 +15,29 @@
   vars_files:
     - vault.yml
 
+  pre_tasks:
+    - name: "Setup authentication (block)"
+      block:
+        - name: "Get the Authentication Token for the future requests"
+          ansible.builtin.uri:
+            url: "https://{{ controller_hostname }}/api/v2/tokens/"
+            user: "{{ controller_username }}"
+            password: "{{ controller_password }}"
+            method: POST
+            force_basic_auth: true
+            validate_certs: "{{ controller_validate_certs }}"
+            status_code: 201
+          register: authtoken_res
+
+        - name: "Set the oauth token to be used since now"
+          ansible.builtin.set_fact:
+            controller_oauthtoken: "{{ authtoken_res.json.token }}"
+            controller_oauthtoken_url: "{{ authtoken_res.json.url }}"
+      no_log: "{{ controller_configuration_object_diff_secure_logging }}"
+      when: controller_oauthtoken is not defined
+      tags:
+        - always
+
   tasks:
 
    
@@ -28,37 +51,7 @@
                                 }}"
 
     - debug: var=projects
-    # - name: Return ID of Org based on name input
-    #   ansible.builtin.uri:
-    #     url: "https://{{ controller_host }}/api/v2/organizations/"
-    #     method: GET
-    #     user: "{{ controller_username }}"
-    #     password: "{{ controller_password }}"
-    #     force_basic_auth: yes
-    #     return_content: yes
-    #     validate_certs: no  # Set to yes if using HTTPS with valid certs  
-    #   register: aap_orgs
-
-    # - debug: var=aap_orgs.json.results 
-
-    # - name: get list of all orgs
-
-    #   ansible.builtin.set_fact:
-    #       orgs: "{{ aap_orgs.json.results | map(attribute='name') | list }}"
-
-    
-    # - debug: var=orgs
-
- 
-
-  #  - name: Display version of awx.awx
-  #    ansible.builtin.command:
-  #     cmd: "ansible-galaxy collection list awx.awx"
-     
-  #  - name: Display version of awxkit
-  #    ansible.builtin.command:
-  #     cmd: "pip3 list"
-
+  
   #  - name: Clone the repository if it doesn't exist
   #    ansible.builtin.git:
   #     repo: "{{ repo_url }}"
@@ -145,3 +138,15 @@
   #    ansible.builtin.command:
   #       cmd: "git push origin main"  
   #       chdir: "{{ repo_dir }}"
+
+  post_tasks:
+    - name: "Delete the Authentication Token used"
+      ansible.builtin.uri:
+        url: "https://{{ controller_hostname }}{{ controller_oauthtoken_url }}"
+        user: "{{ controller_username }}"
+        password: "{{ controller_password }}"
+        method: DELETE
+        force_basic_auth: true
+        validate_certs: "{{ controller_validate_certs }}"
+        status_code: 204
+      when: controller_oauthtoken_url is defined
