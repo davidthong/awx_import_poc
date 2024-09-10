@@ -6,7 +6,7 @@ controller_projects_{{ env }}:
  {%- if project.description != '' -%} 
 {{ '\n' -}}  description: {{ project.description }}
  {%- endif -%}
-{{ '\n' -}}  organization: {{ project.summary_fields.organization.name }}
+{{ '\n' -}}    organization: {{ project.summary_fields.organization.name }}
   scm_branch: {{ project.scm_branch }}
 {%- if project.scm_clean -%} 
 {{ '\n' -}}  scm_clean: {{ project.scm_clean }}
