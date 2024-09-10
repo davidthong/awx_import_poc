@@ -23,4 +23,5 @@ controller_projects_{{ env }}:
 {%- if project.scm_url != '' -%} 
 {{ '\n' -}}{{ '\t' -}}scm_url: {{ project.scm_url }}
  {%- endif -%}
+{%- endfor -%}
  
