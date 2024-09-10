@@ -150,7 +150,7 @@
     
     - name: Push the changes to the remote repository
       ansible.builtin.command:
-        cmd: "git push origin main"  
+        cmd: "git push origin {{ export_branch }}"  
         chdir: "{{ repo_dir }}"
 
   post_tasks:
