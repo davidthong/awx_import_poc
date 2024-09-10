@@ -4,24 +4,24 @@ controller_projects_{{ env }}:
 {%- for project in projects -%}
 {{ '\n' -}} - name: {{ project.name }}
  {%- if project.description != '' -%} 
-{{ '\n' -}}{{ '\t' -}}description: {{ project.description }}
+{{ '\n' -}}  description: {{ project.description }}
  {%- endif -%}
-{{ '\n' -}}{{ '\t' -}}organization: {{ project.summary_fields.organization.name }}
+{{ '\n' -}}  organization: {{ project.summary_fields.organization.name }}
   scm_branch: {{ project.scm_branch }}
 {%- if project.scm_clean -%} 
-{{ '\n' -}}{{ '\t' -}}scm_clean: {{ project.scm_clean }}
+{{ '\n' -}}  scm_clean: {{ project.scm_clean }}
  {%- endif -%}
 {%- if project.scm_delete_on_update -%} 
-{{ '\n' -}}{{ '\t' -}}scm_delete_on_update: {{ project.scm_delete_on_update }}
+{{ '\n' -}}  scm_delete_on_update: {{ project.scm_delete_on_update }}
  {%- endif -%}
 {%- if project.scm_type != '' -%} 
-{{ '\n' -}}{{ '\t' -}}scm_type: {{ project.scm_type }}
+{{ '\n' -}}  scm_type: {{ project.scm_type }}
  {%- endif -%}
 {%- if project.scm_update_on_launch -%} 
-{{ '\n' -}}{{ '\t' -}}scm_update_on_launch: {{ project.scm_update_on_launch }}
+{{ '\n' -}}  scm_update_on_launch: {{ project.scm_update_on_launch }}
  {%- endif -%}
 {%- if project.scm_url != '' -%} 
-{{ '\n' -}}{{ '\t' -}}scm_url: {{ project.scm_url }}
+{{ '\n' -}}  scm_url: {{ project.scm_url }}
  {%- endif -%}
 {%- endfor -%}
  
