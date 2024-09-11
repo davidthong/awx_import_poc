@@ -15,6 +15,7 @@
     - controller_hostname: "{{ controller_host | default(groups['automationcontroller'][0]) }}:{{ controller_port | default(443) }}"
     - controller_username: "{{ controller_user | default('admin') }}"
     - controller_password: "{{ controller_pass }}"
+    - export_branch: main
     - env: dev
   vars_files:
     - vault.yml
@@ -69,10 +70,10 @@
 
     - debug: var=export_branch
   
-    - name: config email
-      ansible.builtin.command:
-        cmd: "git checkout -b {{ export_branch }}"
-        chdir: "{{ repo_dir }}"
+    # - name: config email
+    #   ansible.builtin.command:
+    #     cmd: "git checkout -b {{ export_branch }}"
+    #     chdir: "{{ repo_dir }}"
       
     - name: config email
       ansible.builtin.command:
