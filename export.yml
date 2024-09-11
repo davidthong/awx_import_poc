@@ -53,7 +53,7 @@
 
     - name: Retrieve dictionary with id=3
       ansible.builtin.set_fact:
-        org_selected: "{{ organizations | selectattr('id', 'equalto', 3) | list | first }}"
+        org_selected: "{{ organizations | selectattr('id', 'equalto', 1) | list | first }}"
 
     - debug: var=org_selected.name
 
