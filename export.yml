@@ -51,7 +51,11 @@
                                                   return_all=true, max_objects=query_controller_api_max_objects)
                                          }}"
 
-    - debug: var=organizations 
+    - name: Retrieve dictionary with id=3
+      ansible.builtin.set_fact:
+        org_selected: "{{ org_selected | selectattr('id', 'equalto', 3) | list | first }}"
+
+    - debug: var=org_selected.name
 
     - name: "Get the API list of all Projects in Organization {{ orgs }}"
       ansible.builtin.set_fact:
