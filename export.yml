@@ -55,47 +55,65 @@
                                 }}"
 
     - debug: var=projects
-  
-    - name: Clone the repository if it doesn't exist
-      ansible.builtin.git:
-        repo: "{{ repo_url }}"
-        dest: "{{ repo_dir }}"
-        clone: yes
-        update: yes
-      no_log: true
 
-    # - name: Generate Branch 
-    #   ansible.builtin.set_fact:
-    #       export_branch: "aap_export_{{ ansible_date_time.year }}_{{ ansible_date_time.month }}_{{ ansible_date_time.day }}_jobID_{{ awx_job_id }}"
-
-    - debug: var=export_branch
+    - name: "Get the API list of all Credentials in Organization {{ orgs }}"
+      ansible.builtin.set_fact:
+        credentials: "{{ query(controller_api_plugin, 'credentials',
+                                                query_params={'organization': ord.id},
+                                                host=controller_hostname, oauth_token=controller_oauthtoken, verify_ssl=controller_validate_certs,
+                                                return_all=true, max_objects=query_controller_api_max_objects)
+                                      }}"
   
+    - debug: var=credentials
+
+    - name: "Get the API list of all Execution Environments in Organization {{ orgs }}"
+      ansible.builtin.set_fact:
+        execution_environments: "{{ query(controller_api_plugin, 'execution_environments',
+                                                           query_params={'organization': ord.id},
+                                                           host=controller_hostname, oauth_token=controller_oauthtoken, verify_ssl=controller_validate_certs,
+                                                           return_all=true, max_objects=query_controller_api_max_objects)
+                                                  }}"
+
+    # - name: Clone the repository if it doesn't exist
+    #   ansible.builtin.git:
+    #     repo: "{{ repo_url }}"
+    #     dest: "{{ repo_dir }}"
+    #     clone: yes
+    #     update: yes
+    #   no_log: true
+
+    # # - name: Generate Branch 
+    # #   ansible.builtin.set_fact:
+    # #       export_branch: "aap_export_{{ ansible_date_time.year }}_{{ ansible_date_time.month }}_{{ ansible_date_time.day }}_jobID_{{ awx_job_id }}"
+
+    # - debug: var=export_branch
+  
+    # # - name: config email
+    # #   ansible.builtin.command:
+    # #     cmd: "git checkout -b {{ export_branch }}"
+    # #     chdir: "{{ repo_dir }}"
+      
     # - name: config email
     #   ansible.builtin.command:
-    #     cmd: "git checkout -b {{ export_branch }}"
+    #     cmd: "git config --global user.email 'dthong@gmail.com'"
     #     chdir: "{{ repo_dir }}"
-      
-    - name: config email
-      ansible.builtin.command:
-        cmd: "git config --global user.email 'dthong@gmail.com'"
-        chdir: "{{ repo_dir }}"
     
-    - name: config name
-      ansible.builtin.command:
-        cmd: "git config --global user.name 'david thong'"
-        chdir: "{{ repo_dir }}"
+    # - name: config name
+    #   ansible.builtin.command:
+    #     cmd: "git config --global user.name 'david thong'"
+    #     chdir: "{{ repo_dir }}"
     
 
 
-    - name: Cleanup working directory
-      ansible.builtin.file:
-        path: "{{ repo_dir}}/output/"  # Replace with the directory you want to remove
-        state: absent
+    # - name: Cleanup working directory
+    #   ansible.builtin.file:
+    #     path: "{{ repo_dir}}/output/"  # Replace with the directory you want to remove
+    #     state: absent
     
-    - name: Ensure the directory exists
-      ansible.builtin.file:
-        path: "{{ repo_dir}}/output/"   # Replace with the directory path you want to create
-        state: directory
+    # - name: Ensure the directory exists
+    #   ansible.builtin.file:
+    #     path: "{{ repo_dir}}/output/"   # Replace with the directory path you want to create
+    #     state: directory
   
 
 
@@ -128,36 +146,36 @@
 
   #  - debug: var=aap_settings
 
-    - name: Copy projects to working directory
-      ansible.builtin.template:
-        src: projects.yml.j2
-        dest: "{{ repo_dir}}/output/projects.yml"
+    # - name: Copy projects to working directory
+    #   ansible.builtin.template:
+    #     src: projects.yml.j2
+    #     dest: "{{ repo_dir}}/output/projects.yml"
 
     # - name: Copy settings template to working directory
     #   ansible.builtin.template:
     #     src: settings.yml.j2
     #     dest: "{{ repo_dir}}/output/settings.yml"
 
-    - name: Add the file to the Git repository
-      ansible.builtin.command:
-        cmd: "git status"
-        chdir: "{{ repo_dir }}"
+    # - name: Add the file to the Git repository
+    #   ansible.builtin.command:
+    #     cmd: "git status"
+    #     chdir: "{{ repo_dir }}"
 
-    - name: Add the file to the Git repository
-      ansible.builtin.command:
-        cmd: "git add . "
-        chdir: "{{ repo_dir }}"
+    # - name: Add the file to the Git repository
+    #   ansible.builtin.command:
+    #     cmd: "git add . "
+    #     chdir: "{{ repo_dir }}"
 
-    - name: Commit the changes
-      ansible.builtin.command:
-        cmd: git commit --no-verify -m 'update templates yaml'
-        chdir: "{{ repo_dir }}"
-      ignore_errors: yes
+    # - name: Commit the changes
+    #   ansible.builtin.command:
+    #     cmd: git commit --no-verify -m 'update templates yaml'
+    #     chdir: "{{ repo_dir }}"
+    #   ignore_errors: yes
     
-    - name: Push the changes to the remote repository
-      ansible.builtin.command:
-        cmd: "git push origin {{ export_branch }}"  
-        chdir: "{{ repo_dir }}"
+    # - name: Push the changes to the remote repository
+    #   ansible.builtin.command:
+    #     cmd: "git push origin {{ export_branch }}"  
+    #     chdir: "{{ repo_dir }}"
 
   post_tasks:
     - name: "Delete the Authentication Token used"

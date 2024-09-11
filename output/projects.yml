@@ -1,18 +1,20 @@
 ---
 controller_projects_dev:
 - name: Demo Project
-	organization:Default
+	organization: Default
  	scm_branch: 
 	scm_type: git
 	scm_url: https://github.com/ansible/ansible-tower-samples
+
 - name: awx_export
-	organization:Default
+	organization: Default
  	scm_branch: 
 	scm_type: git
 	scm_update_on_launch: True
 	scm_url: https://github.com/davidthong/awx_import_poc.git
+
 - name: c as code
-	organization:Default
+	organization: Default
  	scm_branch: 
 	scm_type: git
 	scm_update_on_launch: True
