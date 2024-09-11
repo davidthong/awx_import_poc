@@ -1,20 +1,19 @@
-# Documentation: https://galaxy.ansible.com/ui/repo/published/infra/controller_configuration/content/role/projects/
 ---
 controller_projects_dev:
 - name: Demo Project
-organization: Default
-  scm_branch: 
-scm_type: git
-scm_url: https://github.com/ansible/ansible-tower-samples
+	organization:Default
+ 	scm_branch: 
+	scm_type: git
+	scm_url: https://github.com/ansible/ansible-tower-samples
 - name: awx_export
-organization: Default
-  scm_branch: 
-scm_type: git
-scm_update_on_launch: True
-scm_url: https://github.com/davidthong/awx_import_poc.git
+	organization:Default
+ 	scm_branch: 
+	scm_type: git
+	scm_update_on_launch: True
+	scm_url: https://github.com/davidthong/awx_import_poc.git
 - name: c as code
-organization: Default
-  scm_branch: 
-scm_type: git
-scm_update_on_launch: True
-scm_url: https://github.com/davidthong/aap_configuration_template.git
+	organization:Default
+ 	scm_branch: 
+	scm_type: git
+	scm_update_on_launch: True
+	scm_url: https://github.com/davidthong/aap_configuration_template.git
