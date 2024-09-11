@@ -51,7 +51,7 @@
                                                   return_all=true, max_objects=query_controller_api_max_objects)
                                          }}"
 
-    - debug: var=organizations.id[1]  
+    - debug: var=organizations 
 
     - name: "Get the API list of all Projects in Organization {{ orgs }}"
       ansible.builtin.set_fact:
