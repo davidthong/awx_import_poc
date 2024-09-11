@@ -59,7 +59,7 @@
     - name: "Get the API list of all Credentials in Organization {{ orgs }}"
       ansible.builtin.set_fact:
         credentials: "{{ query(controller_api_plugin, 'credentials',
-                                                query_params={'organization': ord.id},
+                                                query_params={'organization': org_id},
                                                 host=controller_hostname, oauth_token=controller_oauthtoken, verify_ssl=controller_validate_certs,
                                                 return_all=true, max_objects=query_controller_api_max_objects)
                                       }}"
@@ -69,7 +69,7 @@
     - name: "Get the API list of all Execution Environments in Organization {{ orgs }}"
       ansible.builtin.set_fact:
         execution_environments: "{{ query(controller_api_plugin, 'execution_environments',
-                                                           query_params={'organization': ord.id},
+                                                           query_params={'organization': org_id},
                                                            host=controller_hostname, oauth_token=controller_oauthtoken, verify_ssl=controller_validate_certs,
                                                            return_all=true, max_objects=query_controller_api_max_objects)
                                                   }}"
