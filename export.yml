@@ -64,9 +64,9 @@
         update: yes
       no_log: true
 
-    - name: Generate Branch 
-      ansible.builtin.set_fact:
-          export_branch: "aap_export_{{ ansible_date_time.year }}_{{ ansible_date_time.month }}_{{ ansible_date_time.day }}_jobID_{{ awx_job_id }}"
+    # - name: Generate Branch 
+    #   ansible.builtin.set_fact:
+    #       export_branch: "aap_export_{{ ansible_date_time.year }}_{{ ansible_date_time.month }}_{{ ansible_date_time.day }}_jobID_{{ awx_job_id }}"
 
     - debug: var=export_branch
   
