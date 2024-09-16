@@ -1,0 +1,111 @@
+---
+- name: AWX export
+  hosts: localhost
+  connection: local
+  vars:
+    - git_user: davidthong
+    - git_pat: "{{ github_pat }}"
+    - repo_url: "https://{{ git_user }}:{{ git_pat }}@github.com/{{ git_user }}/awx_import_poc.git"
+    - repo_dir: /tmp/export
+    - controller_host: 192.168.0.224
+    - org_id: 1
+    - controller_api_plugin: awx.awx.controller_api
+    - query_controller_api_max_objects: 10000
+    - controller_validate_certs: false
+    - controller_hostname: "{{ controller_host | default(groups['automationcontroller'][0]) }}:{{ controller_port | default(443) }}"
+    - controller_username: "{{ controller_user | default('admin') }}"
+    - controller_password: "{{ controller_pass }}"
+    - export_branch: main
+    - env: dev
+    - output_path: "{{ repo_dir}}/output/"
+  vars_files:
+    - vault.yml
+
+  pre_tasks:
+    - name: "Setup authentication (block)"
+      block:
+        - name: "Get the Authentication Token for the future requests"
+          ansible.builtin.uri:
+            url: "https://{{ controller_hostname }}/api/v2/tokens/"
+            user: "{{ controller_username }}"
+            password: "{{ controller_password }}"
+            method: POST
+            force_basic_auth: true
+            validate_certs: "{{ controller_validate_certs }}"
+            status_code: 201
+          register: authtoken_res
+
+        - name: "Set the oauth token to be used since now"
+          ansible.builtin.set_fact:
+            controller_oauthtoken: "{{ authtoken_res.json.token }}"
+            controller_oauthtoken_url: "{{ authtoken_res.json.url }}"
+      when: controller_oauthtoken is not defined
+      tags:
+        - always
+      
+          - name: Clone the repository if it doesn't exist
+      ansible.builtin.git:
+        repo: "{{ repo_url }}"
+        dest: "{{ repo_dir }}"
+        clone: yes
+        update: yes
+      no_log: true
+
+    - name: config email
+      ansible.builtin.command:
+        cmd: "git config --global user.email 'dthong@gmail.com'"
+        chdir: "{{ repo_dir }}"
+    
+    - name: config name
+      ansible.builtin.command:
+        cmd: "git config --global user.name 'david thong'"
+        chdir: "{{ repo_dir }}"
+    
+
+    - name: Cleanup working directory
+      ansible.builtin.file:
+        path: "{{ output_path}}"  # Replace with the directory you want to remove
+        state: absent
+    
+    - name: Ensure the directory exists
+      ansible.builtin.file:
+        path: "{{ output_path}}"   # Replace with the directory path you want to create
+        state: directory
+  
+  roles:
+    - infra.controller_configuration.filetree_create
+
+  tasks:
+  
+    - name: Add the file to the Git repository
+      ansible.builtin.command:
+        cmd: "git status"
+        chdir: "{{ repo_dir }}"
+
+    - name: Add the file to the Git repository
+      ansible.builtin.command:
+        cmd: "git add . "
+        chdir: "{{ repo_dir }}"
+
+    - name: Commit the changes
+      ansible.builtin.command:
+        cmd: git commit --no-verify -m 'update templates yaml'
+        chdir: "{{ repo_dir }}"
+      ignore_errors: yes
+    
+    - name: Push the changes to the remote repository
+      ansible.builtin.command:
+        cmd: "git push origin {{ export_branch }}"  
+        chdir: "{{ repo_dir }}"
+
+  post_tasks:
+    - name: "Delete the Authentication Token used"
+      ansible.builtin.uri:
+        url: "https://{{ controller_hostname }}{{ controller_oauthtoken_url }}"
+        user: "{{ controller_username }}"
+        password: "{{ controller_password }}"
+        method: DELETE
+        force_basic_auth: true
+        validate_certs: "{{ controller_validate_certs }}"
+        status_code: 204
+      when: controller_oauthtoken_url is defined
