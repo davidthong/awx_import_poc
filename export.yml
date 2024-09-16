@@ -44,6 +44,8 @@
 
   tasks:
 
+    
+
     - name: "Gets current Organizations configured"
       ansible.builtin.set_fact:
         organizations: "{{ query(controller_api_plugin, 'organizations',
