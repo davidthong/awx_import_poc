@@ -43,7 +43,7 @@
       tags:
         - always
       
-          - name: Clone the repository if it doesn't exist
+    - name: Clone the repository if it doesn't exist
       ansible.builtin.git:
         repo: "{{ repo_url }}"
         dest: "{{ repo_dir }}"
