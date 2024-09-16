@@ -1,0 +1,46 @@
+---
+controller_roles:
+  - team: "admins_davidthong"
+    organizations:
+      - "davidthong"
+    role: "execute"
+  - team: "admins_davidthong"
+    organizations:
+      - "davidthong"
+    role: "project admin"
+  - team: "admins_davidthong"
+    organizations:
+      - "davidthong"
+    role: "inventory admin"
+  - team: "admins_davidthong"
+    organizations:
+      - "davidthong"
+    role: "credential admin"
+  - team: "admins_davidthong"
+    organizations:
+      - "davidthong"
+    role: "workflow admin"
+  - team: "admins_davidthong"
+    organizations:
+      - "davidthong"
+    role: "notification admin"
+  - team: "admins_davidthong"
+    organizations:
+      - "davidthong"
+    role: "job template admin"
+  - team: "admins_davidthong"
+    organizations:
+      - "davidthong"
+    role: "execution environment admin"
+  - team: "admins_davidthong"
+    organizations:
+      - "davidthong"
+    role: "auditor"
+  - team: "admins_davidthong"
+    organizations:
+      - "davidthong"
+    role: "read"
+  - team: "admins_davidthong"
+    organizations:
+      - "davidthong"
+    role: "approve"
