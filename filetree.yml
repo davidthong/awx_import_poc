@@ -18,6 +18,7 @@
     - export_branch: export
     - env: dev
     - output_path: "{{ repo_dir}}/output/"
+    - orgs: "Default"
   vars_files:
     - vault.yml
 
