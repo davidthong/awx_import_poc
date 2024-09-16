@@ -1,0 +1,11 @@
+---
+controller_user_accounts:
+- username: "bbob"
+  password: "INITIAL"
+  email: ""
+  first_name: "billy"
+  last_name: "bob"
+  auditor: "False"
+  superuser: "True"
+  update_secrets: false
+...

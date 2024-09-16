@@ -1,0 +1,15 @@
+---
+controller_roles:
+  - user: "evotruba"
+    organizations:
+      - "Default"
+    role: "member"
+  - user: "evotruba"
+    target_teams:
+      - "Sys Admins"
+    role: "member"
+  - user: "evotruba"
+    target_teams:
+      - "Sys Admins"
+    role: "read"
+...
