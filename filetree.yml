@@ -73,7 +73,7 @@
         state: directory
   
   roles:
-    - infra.controller_configuration.filetree_create
+    - role: infra.controller_configuration.object_diff
 
   tasks:
   
