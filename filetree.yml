@@ -54,6 +54,11 @@
 
     - name: config email
       ansible.builtin.command:
+        cmd: "git checkout -b {{ export_branch }}'"
+        chdir: "{{ repo_dir }}"
+
+    - name: config email
+      ansible.builtin.command:
         cmd: "git config --global user.email 'dthong@gmail.com'"
         chdir: "{{ repo_dir }}"
     
