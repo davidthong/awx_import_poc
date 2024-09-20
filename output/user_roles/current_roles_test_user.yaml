@@ -1,0 +1,11 @@
+---
+controller_roles:
+  - user: "test_user"
+    organizations:
+      - "davidthong"
+    role: "member"
+  - user: "test_user"
+    target_teams:
+      - "config_as_code_admin"
+    role: "member"
+...

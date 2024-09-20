@@ -1,0 +1,47 @@
+---
+controller_roles:
+  - team: "Dog Team"
+    organizations:
+      - "Dogs"
+    role: "execute"
+  - team: "Dog Team"
+    organizations:
+      - "Dogs"
+    role: "project admin"
+  - team: "Dog Team"
+    organizations:
+      - "Dogs"
+    role: "inventory admin"
+  - team: "Dog Team"
+    organizations:
+      - "Dogs"
+    role: "credential admin"
+  - team: "Dog Team"
+    organizations:
+      - "Dogs"
+    role: "workflow admin"
+  - team: "Dog Team"
+    organizations:
+      - "Dogs"
+    role: "notification admin"
+  - team: "Dog Team"
+    organizations:
+      - "Dogs"
+    role: "job template admin"
+  - team: "Dog Team"
+    organizations:
+      - "Dogs"
+    role: "execution environment admin"
+  - team: "Dog Team"
+    organizations:
+      - "Dogs"
+    role: "auditor"
+  - team: "Dog Team"
+    organizations:
+      - "Dogs"
+    role: "read"
+  - team: "Dog Team"
+    organizations:
+      - "Dogs"
+    role: "approve"
+...

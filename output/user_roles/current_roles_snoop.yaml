@@ -1,0 +1,54 @@
+---
+controller_roles:
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "admin"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "execute"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "project admin"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "inventory admin"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "credential admin"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "workflow admin"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "notification admin"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "job template admin"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "execution environment admin"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "auditor"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "member"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "read"
+  - user: "snoop"
+    organizations:
+      - "Dogs"
+    role: "approve"

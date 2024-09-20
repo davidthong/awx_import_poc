@@ -1,0 +1,5 @@
+---
+controller_roles:
+  - team: "config_as_code_admin"
+    job_template: "awx_export"
+    role: "execute"
