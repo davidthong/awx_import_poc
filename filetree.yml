@@ -54,7 +54,7 @@
 
     - name: create new export branch
       ansible.builtin.command:
-        cmd: "git checkout -b {{ export_branch }}'"
+        cmd: "git checkout -b {{ export_branch }}"
         chdir: "{{ repo_dir }}"
 
     - name: config email
