@@ -52,7 +52,7 @@
         update: yes
       no_log: true
 
-    - name: config email
+    - name: create new export branch
       ansible.builtin.command:
         cmd: "git checkout -b {{ export_branch }}'"
         chdir: "{{ repo_dir }}"
