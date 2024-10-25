@@ -47,7 +47,7 @@
 
        - name: export 
          awx.awx.export:
-            all: True
+            credentials: 'All'
          register: export
 
 
