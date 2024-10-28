@@ -14,15 +14,46 @@
 
   tasks:
 
-
-       - name: export 
+       - name: Exports Orgs 
          awx.awx.export:
-            credentials: 'all'
-         register: export
+            organizations: 'all'
+         register: aap_organizations
 
+       - name: Export Credential Types 
+         awx.awx.export:
+            credential_types : 'all'
+         register: aap_credential_types 
 
-       - debug: var=export
+       - name: Export Credentials
+         awx.awx.export:
+            credentials : 'all'
+         register: aap_credentials
 
+       - name: Export Projects
+         awx.awx.export:
+            credentials : 'all'
+         register: aap_projects
+       
+       - name: Export Inventory
+         awx.awx.export:
+            inventory : 'all'
+         register: aap_inventory
+        
+       - name: Export Inventory Sources
+         awx.awx.export:
+            inventory_sources : 'all'
+         register: aap_inventory_sources
+
+       - name: Export Job Templates
+         awx.awx.export:
+            job_templates : 'all'
+         register: aap_job_templates
+
+       - name: Export Job Templates
+         awx.awx.export:
+            workflow_job_templates : 'all'
+         register: workflow_job_templates
+        
     
 
   #   - name: "Gets current Organizations configured"
