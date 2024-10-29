@@ -74,6 +74,14 @@
            
        - debug: var=aap_export
 
+       - name: Clone the repository if it doesn't exist
+         ansible.builtin.git:
+            repo: "{{ repo_url }}"
+            dest: "{{ repo_dir }}"
+            clone: yes
+            update: yes
+         no_log: true
+
        - name: Generate Branch 
          ansible.builtin.set_fact:
             export_branch: "aap_export_{{ ansible_date_time.year }}_{{ ansible_date_time.month }}_{{ ansible_date_time.day }}_jobID_{{ awx_job_id }}"
