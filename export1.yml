@@ -31,7 +31,7 @@
 
        - name: Export Projects
          awx.awx.export:
-            credentials : 'all'
+            projects : 'all'
          register: aap_projects
        
        - name: Export Inventory
@@ -64,6 +64,9 @@
             aap_export: "{{ aap_export | combine(item) }}"
          loop:
               - "{{ aap_organizations.assets }}"
+              - "{{ aap_credential_types.assets }}"
+              - "{{ aap_credentials.assets }}"
+              - "{{ aap_inventory.assets }}"
               - "{{ aap_credential_types.assets }}"
               - "{{ aap_credentials.assets }}"
 
