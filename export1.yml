@@ -63,9 +63,9 @@
          ansible.builtin.set_fact:
             aap_export: "{{ aap_export | combine(item) }}"
          loop:
-              - "{{ aap_organizations }}"
-              - "{{ aap_credential_types }}"
-              - "{{ aap_credentials }}"
+              - "{{ aap_organizations.assets }}"
+              - "{{ aap_credential_types.assets }}"
+              - "{{ aap_credentials.assets }}"
 
        - debug: var=aap_export
 
