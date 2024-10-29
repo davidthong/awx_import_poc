@@ -54,18 +54,21 @@
             workflow_job_templates : 'all'
          register: workflow_job_templates
       
+       - name: Initialize aap_export
+         ansible.builtin.set_fact:
+           aap_export: {}
+
+
        - name: Combine all AAP objects into one dictionary 
          ansible.builtin.set_fact:
-           aap_export: "{{ aap_organizations | combine(aap_credential_types) | combine(aap_credentials)  }}"
+            aap_export: "{{ aap_export | combine(item) }}"
+         loop:
+              - "{{ aap_organizations }}"
+              - "{{ aap_credential_types }}"
+              - "{{ aap_credentials }}"
 
        - debug: var=aap_export
 
-       - debug: var=aap_credential_types
-
-       - debug: var=aap_organizations
-
-        
-    
 
   #   - name: "Gets current Organizations configured"
   #     ansible.builtin.set_fact:
