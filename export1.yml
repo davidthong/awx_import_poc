@@ -60,6 +60,10 @@
 
        - debug: var=aap_export
 
+       - debug: var=aap_credential_types
+
+       - debug: var=aap_organizations
+
         
     
 
