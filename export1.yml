@@ -53,6 +53,13 @@
          awx.awx.export:
             workflow_job_templates : 'all'
          register: workflow_job_templates
+      
+       - name: Combine all AAP objects into one dictionary 
+         ansible.builtin.set_fact:
+           aap_export: "{{ aap_organizations | combine(aap_credential_types) | combine(credentials)  }}"
+
+       - debug: var=aap_export
+
         
     
 
