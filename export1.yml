@@ -56,7 +56,7 @@
       
        - name: Combine all AAP objects into one dictionary 
          ansible.builtin.set_fact:
-           aap_export: "{{ aap_organizations | combine(aap_credential_types) | combine(credentials)  }}"
+           aap_export: "{{ aap_organizations | combine(aap_credential_types) | combine(aap_credentials)  }}"
 
        - debug: var=aap_export
 
