@@ -62,7 +62,8 @@
        - name: Combine all AAP objects into one dictionary 
          ansible.builtin.set_fact:
             aap_export: "{{ aap_export | combine(item) }}"
-         loop:
+         loop: 
+              - "{{ aap_organizations.assets }}"
               - "{{ aap_organizations.assets }}"
               - "{{ aap_credential_types.assets }}"
               - "{{ aap_credentials.assets }}"
@@ -109,18 +110,18 @@
             cmd: "git status"
             chdir: "{{ repo_dir }}"
 
-        - name: Add the file to the Git repository
-          ansible.builtin.command:
+       - name: Add the file to the Git repository
+         ansible.builtin.command:
             cmd: "git add . "
             chdir: "{{ repo_dir }}"
 
-        - name: Commit the changes
-          ansible.builtin.command:
+       - name: Commit the changes
+         ansible.builtin.command:
             cmd: git commit --no-verify -m 'aap export'
             chdir: "{{ repo_dir }}"
           ignore_errors: yes
         
-        - name: Push the changes to the remote repository
-          ansible.builtin.command:
+       - name: Push the changes to the remote repository
+         ansible.builtin.command:
             cmd: "git push origin {{ export_branch }}"  
             chdir: "{{ repo_dir }}"
