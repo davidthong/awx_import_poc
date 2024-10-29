@@ -69,9 +69,8 @@
               - "{{ aap_inventory.assets }}"
               - "{{ aap_inventory_sources.assets }}"
               - "{{ aap_job_templates.assets }}"
-              - 
-              {{ }}
-
+              - "{{ workflow_job_templates.assets }}"
+           
        - debug: var=aap_export
 
        - name: Generate Branch 
