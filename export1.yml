@@ -115,7 +115,7 @@
       
        - name: Copy settings template to working directory
          ansible.builtin.copy:
-            content: settings.yml.j2
+            content: "{{ aap_export }}"
             dest: "{{ repo_dir}}/output/export.json"
 
        - name: Add the file to the Git repository
