@@ -1,0 +1,9 @@
+- name: Hello Worlds
+  hosts: localhost
+  connection: local
+
+  tasks:
+
+     - name: Herro World 
+       ansible.builtin.debug:
+          msg: "Herro World"

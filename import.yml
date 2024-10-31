@@ -1,0 +1,12 @@
+---
+
+- name: Import config 
+  hosts: localhost
+  connection: local
+
+  tasks:
+
+
+     - name: Import Config
+       awx.awx.import:
+          assets: "{{ lookup('file', 'output/export.json') | from_json() }}"

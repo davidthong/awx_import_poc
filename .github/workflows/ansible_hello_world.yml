@@ -1,0 +1,25 @@
+name: Run Ansible Playbook Every 3 Minutes
+
+# Use both schedule and workflow_dispatch to allow manual trigger or automated schedule
+on:
+  workflow_dispatch:  # Allows manual runs
+  schedule:
+    - cron: "*/3 * * * *"  # Runs every 3 minutes
+
+jobs:
+  ansible_playbook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Ansible
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ansible
+
+      - name: Run Ansible Playbook
+        run: |
+          ansible-playbook hello_world.yml
+
