@@ -2,6 +2,14 @@
   hosts: localhost
   gather_facts: false
   tasks:
+
+    - name: get today date with strfilter
+      ansible.builtin.set_fact:
+         today: "{{ '%Y-%m-%d' | strftime }}"
+    
+    - debug: var=today
+
+
     - name: Get current date in YYYY-MM-DD format
       command: date +%Y-%m-%d
       register: current_date
