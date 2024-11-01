@@ -4,7 +4,7 @@
   vars:
     db_name: "awx"
     db_user: "awx"
-    db_host: "localhost"  # Set to localhost if running locally
+    db_host: "192.168.0.224"  # Set to localhost if running locally
     db_port: 5432  # Default PostgreSQL port
   vars_files:
     - vault.yml
