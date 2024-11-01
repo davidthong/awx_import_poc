@@ -1,12 +1,30 @@
 ---
-- name: Get date for 30 days ago
+- name: Get hosts with last_automation greater than 180 days from today
   hosts: localhost
   gather_facts: false
-  tasks:
-    - name: Calculate date 30 days ago
-      set_fact:
-        date_30_days_ago: "{{ '%Y-%m-%d' | strftime((lookup('pipe', 'date +%s') | int) - (30 * 86400)) }}"
+  vars:
+    number_of_days: 180
+    api_url: "http://{{ controller_host }}/api/v2/host_metrics/" 
+    date_180_days_ago: "{{ '%Y-%m-%d' | strftime((lookup('pipe', 'date +%s') | int) - ( number_of_days  * 86400)) }}"
 
-    - name: Show the date 30 days ago
+  tasks:
+    - name: Debug calculated date
       debug:
-        msg: "Date 30 days ago: {{ date_30_days_ago }}"
+        msg: "Date 180 days ago: {{ date_180_days_ago }}"
+
+    - name: Call host_metrics API to get hosts with last_automation greater than 180 days ago
+      uri:
+        url: "{{ api_url }}?last_automation__gt={{ date_180_days_ago }}"
+        method: GET
+        user: "{{ api_username }}"
+        password: "{{ api_password }}"
+        return_content: yes
+      register: api_response
+
+    - name: Debug API response
+      debug:
+        var: api_response.json
+
+    - name: Show hosts with last_automation greater than 180 days
+      debug:
+        msg: "Hosts with last_automation greater than 180 days: {{ api_response.json.results }}"
