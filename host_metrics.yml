@@ -6,6 +6,8 @@
     number_of_days: 180
     api_url: "http://{{ controller_host }}/api/v2/host_metrics/" 
     date_180_days_ago: "{{ '%Y-%m-%d' | strftime((lookup('pipe', 'date +%s') | int) - ( number_of_days  * 86400)) }}"
+  vars_files:
+     - vault.yml
 
   tasks:
     - name: Debug calculated date
