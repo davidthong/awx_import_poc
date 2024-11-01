@@ -15,13 +15,15 @@
         msg: "Date 180 days ago: {{ date_180_days_ago }}"
 
     - name: Call host_metrics API to get hosts with last_automation greater than 180 days ago
-      uri:
+      ansbile.builtin.uri:
         url: "{{ api_url }}?last_automation__gt={{ date_180_days_ago }}"
         method: GET
         user: "{{ api_username }}"
         password: "{{ api_password }}"
         return_content: yes
       register: api_response
+      validate_certs: false
+
 
     - name: Debug API response
       debug:
