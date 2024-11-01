@@ -1,0 +1,28 @@
+- name: Fetch Host Metrics older than 30 days
+  hosts: localhost
+  gather_facts: false
+  vars:
+    db_name: "awx"
+    db_user: "awx"
+    db_host: "localhost"  # Set to localhost if running locally
+    db_port: 5432  # Default PostgreSQL port
+  vars_files:
+    - vault.yml
+
+  tasks:
+    - name: Run query to fetch host metrics older than 30 days
+      community.postgresql.postgresql_query:
+        db: "{{ db_name }}"
+        login_user: "{{ db_user }}"
+        login_password: "{{ db_password }}"
+        login_host: "{{ db_host }}"
+        login_port: "{{ db_port }}"
+        query: |
+          SELECT *
+          FROM public.main_hostmetric
+          WHERE last_automation < NOW() - INTERVAL '30 days';
+      register: query_result
+
+    - name: Display the query results
+      debug:
+        var: query_result.query_result
