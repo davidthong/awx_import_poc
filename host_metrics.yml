@@ -1,32 +1,14 @@
 - name: Fetch Host Metrics older than 30 days
   hosts: localhost
   gather_facts: false
-  vars:
-    db_name: "awx"
-    db_user: "awx"
-    db_host: "192.168.0.224"  # Set to localhost if running locally
-    db_port: 5432  # Default PostgreSQL port
-  vars_files:
-    - vault.yml
+
 
   tasks:
-    - name: install psycopg2
-      ansible.builtin.shell: pip3 install psycopg2-binary
-
   
-    - name: Run query to fetch host metrics older than 30 days
-      community.postgresql.postgresql_query:
-        db: "{{ db_name }}"
-        login_user: "{{ db_user }}"
-        login_password: "{{ db_password }}"
-        login_host: "{{ db_host }}"
-        login_port: "{{ db_port }}"
-        query: |
-          SELECT *
-          FROM public.main_hostmetric
-          WHERE last_automation < NOW() - INTERVAL '30 days';
-      register: query_result
+    - name: Calculate date 30 days ago
+      ansible.builtin.set_fact:
+        date_30_days_ago: "{{ (ansible_date_time.iso8601 | to_datetime('%Y-%m-%dT%H:%M:%SZ') - timedelta(days=30)).strftime('%Y-%m-%d') }}"
 
-    - name: Display the query results
+    - name: Show the date 30 days ago
       debug:
-        var: query_result.query_result
+        msg: "Date 30 days ago: {{ date_30_days_ago }}"
