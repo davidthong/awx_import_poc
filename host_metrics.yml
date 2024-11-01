@@ -1,13 +1,15 @@
-- name: Fetch Host Metrics older than 30 days
+---
+- name: Get date for 30 days ago
   hosts: localhost
   gather_facts: false
-
-
   tasks:
-  
+    - name: Get current date
+      set_fact:
+        current_date: "{{ lookup('pipe', 'date +%Y-%m-%d') }}"
+
     - name: Calculate date 30 days ago
-      ansible.builtin.set_fact:
-        date_30_days_ago: "{{ (lookup('ansible.builtin.pipe', 'date -d '30 days ago' +'%Y-%m-%d'')) }}"
+      set_fact:
+        date_30_days_ago: "{{ (current_date | to_datetime('%Y-%m-%d') - timedelta(days=30)).strftime('%Y-%m-%d') }}"
 
     - name: Show the date 30 days ago
       debug:
