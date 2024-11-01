@@ -10,6 +10,10 @@
     - vault.yml
 
   tasks:
+    - name: install psycopg2
+      ansible.builtin.shell: pip3 install psycopg2
+
+  
     - name: Run query to fetch host metrics older than 30 days
       community.postgresql.postgresql_query:
         db: "{{ db_name }}"
