@@ -1,16 +1,17 @@
 - name: Get date for 30 days ago
   hosts: localhost
+  gather_facts: false
   tasks:
-    - name: Get current date
-      set_fact:
-        current_date: "{{ ansible_date_time.date }}"
+    - name: Get current date in YYYY-MM-DD format
+      command: date +%Y-%m-%d
+      register: current_date
 
     - debug: var=current_date
 
     - name: Calculate date 30 days ago
-      set_fact:
-        date_30_days_ago: "{{ (current_date | to_datetime('%Y-%m-%d') - (30 * 86400)) | to_datetime('%Y-%m-%d') }}"
+      command: date -d "{{ current_date.stdout }} - 30 days" +%Y-%m-%d
+      register: date_30_days_ago
 
     - name: Show the date 30 days ago
       debug:
-        msg: "Date 30 days ago: {{ date_30_days_ago }}"
+        msg: "Date 30 days ago: {{ date_30_days_ago.stdout }}"
