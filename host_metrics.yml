@@ -7,7 +7,7 @@
   
     - name: Calculate date 30 days ago
       ansible.builtin.set_fact:
-        date_30_days_ago: "{{ (ansible_date_time.iso8601 | to_datetime('%Y-%m-%dT%H:%M:%SZ') - timedelta(days=30)).strftime('%Y-%m-%d') }}"
+        date_30_days_ago: "{{ (lookup('ansible.builtin.pipe', 'date -d '30 days ago' +'%Y-%m-%d'')) }}"
 
     - name: Show the date 30 days ago
       debug:
