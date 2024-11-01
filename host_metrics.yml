@@ -21,8 +21,8 @@
         user: "{{ api_username }}"
         password: "{{ api_password }}"
         return_content: yes
+        validate_certs: false
       register: api_response
-      validate_certs: false
 
 
     - name: Debug API response
