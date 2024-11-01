@@ -1,6 +1,5 @@
 - name: Get date for 30 days ago
   hosts: localhost
-  gather_facts: false
   tasks:
     - name: Get current date
       set_fact:
