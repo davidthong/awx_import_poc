@@ -1,10 +1,11 @@
+---
 - name: Get date for 30 days ago
   hosts: localhost
   gather_facts: false
   tasks:
     - name: Calculate date 30 days ago
       set_fact:
-        date_30_days_ago: "{{ (now() - 30 * 86400) | strftime('%Y-%m-%d') }}"
+        date_30_days_ago: "{{ '%Y-%m-%d' | strftime((lookup('pipe', 'date +%s') | int) - (30 * 86400)) }}"
 
     - name: Show the date 30 days ago
       debug:
