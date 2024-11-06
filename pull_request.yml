@@ -1,6 +1,12 @@
 - name: PR playbook  
   hosts: localhost
   connection: local 
+  vars:
+     githubUrl: "api.github.com"
+     githubOrgName: davidthong
+     github_repo_name: awx_import_poc
+     sourceBranch: dev
+     targetBranch: main
 
   tasks:  
     
