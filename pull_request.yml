@@ -11,6 +11,8 @@
      githubUser: "{{ githubOrgName }}"
      githubToken: "{{ github_pat }}"
      pr_descripton: "Configuration as Code - Settings"
+     github_reviewers:
+        - davidthong
 
   tasks:  
     
