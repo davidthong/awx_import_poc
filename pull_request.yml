@@ -2,11 +2,14 @@
   hosts: localhost
   connection: local 
   vars:
-     githubUrl: "api.github.com"
+     githubUrl: "https://api.github.com"
      githubOrgName: davidthong
      github_repo_name: awx_import_poc
      sourceBranch: dev
      targetBranch: main
+     github_endpoint: "{{ githubUrl }}"
+     githubUser: "{{ githubOrgName }}"
+     githubToken: "{{ github_pat }}"
 
   tasks:  
     
@@ -123,7 +126,7 @@
               Accept: application/vnd.github.v3+json
           register: github_pr_status
           when: github_reviewers is defined and github_reviewers | length > 0
-          
+
       when: github_endpoint | regex_search('git.express-scripts.com')   
 
       rescue:
