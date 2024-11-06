@@ -1,6 +1,8 @@
 - name: PR playbook  
   hosts: localhost
-  connection: local 
+  connection: local
+  vars_files:
+     - vault.yml
   vars:
      githubUrl: "https://api.github.com"
      githubOrgName: davidthong
@@ -13,8 +15,6 @@
      pr_descripton: "Configuration as Code - Settings"
      github_reviewers:
         - davidthong
-   vars_files:
-     - vault.yml
 
   tasks:  
     
