@@ -63,6 +63,23 @@
           debug:
             msg: PR already exists or No commits between {{targetBranch}} and {{sourceBranch}}
           when: github_pr_status.status == 422
+
+        - name: Add Team Reviewers to The PR
+          ansible.builtin.uri:
+            url: "{{ githubUrl }}/api/v3/repos/{{ githubOrgName }}/{{ github_repo_name }}/pulls/{{ github_pr_status.json.number }}/requested_reviewers"
+            body: "{{ lookup('template', 'pr_add_reviewers.json') }}"
+            force_basic_auth: yes
+            user: "{{ githubUser }}"
+            password: "{{ githubToken }}"
+            body_format: json
+            method: POST
+            validate_certs: no
+            status_code: 200,201,203,422
+            headers:
+              Accept: application/vnd.github.v3+json
+          register: github_pr_add_reviewers_status
+          when: github_reviewers is defined 
+
       when: github_endpoint | regex_search('github.com')
 
 
@@ -116,21 +133,7 @@
           set_fact:
             summary_list: '{{ summary_list }};"{{ role_name }} ,"successful"'
 
-        - name: Add Team Reviewers to The PR
-          ansible.builtin.uri:
-            url: "{{ githubUrl }}/api/v3/repos/{{ githubOrgName }}/{{ github_repo_name }}/pulls/{{ github_pr_status.json.number }}/requested_reviewers"
-            body: "{{ lookup('template', 'pr_add_reviewers.json') }}"
-            force_basic_auth: yes
-            user: "{{ githubUser }}"
-            password: "{{ githubTokenESI }}"
-            body_format: json
-            method: POST
-            validate_certs: no
-            status_code: 200,201,203,422
-            headers:
-              Accept: application/vnd.github.v3+json
-          register: github_pr_add_reviewers_status
-          when: github_reviewers is defined 
+    
 
       when: github_endpoint | regex_search('git.express-scripts.com')   
 
