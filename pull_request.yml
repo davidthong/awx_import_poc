@@ -13,6 +13,8 @@
      pr_descripton: "Configuration as Code - Settings"
      github_reviewers:
         - davidthong
+   vars_files:
+     - vault.yml
 
   tasks:  
     
