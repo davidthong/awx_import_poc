@@ -10,6 +10,7 @@
      github_endpoint: "{{ githubUrl }}"
      githubUser: "{{ githubOrgName }}"
      githubToken: "{{ github_pat }}"
+     pr_descripton: "Configuration as Code - Settings"
 
   tasks:  
     
