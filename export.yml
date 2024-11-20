@@ -74,6 +74,11 @@
      - name: Convert registed output from api call to settings dictionary
        ansible.builtin.set_fact:
         aap_settings: "{{ aap_controller_settings_response.json }}"
+      
+     - name: Ensure the directory exists
+       ansible.builtin.file:
+              path: "{{ repo_dir}}/output/"   # Replace with the directory path you want to create
+              state: directory
     
      - name: Copy settings template to working directory
        ansible.builtin.template:
