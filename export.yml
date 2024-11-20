@@ -94,7 +94,7 @@
        ansible.builtin.command:
           cmd: git commit --no-verify -m 'update settings yaml'
           chdir: "{{ repo_dir }}"
-        ignore_errors: yes
+       ignore_errors: yes
       
      - name: Push the changes to the remote repository
        ansible.builtin.command:
