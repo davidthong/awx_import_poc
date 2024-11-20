@@ -20,40 +20,86 @@
   vars_files:
     - vault.yml
 
-  pre_tasks:
-    - name: "Setup authentication (block)"
-      block:
-        - name: "Get the Authentication Token for the future requests"
-          ansible.builtin.uri:
-            url: "https://{{ controller_hostname }}/api/v2/tokens/"
-            user: "{{ controller_username }}"
-            password: "{{ controller_password }}"
-            method: POST
-            force_basic_auth: true
-            validate_certs: "{{ controller_validate_certs }}"
-            status_code: 201
-          register: authtoken_res
+  # pre_tasks:
+  #   - name: "Setup authentication (block)"
+  #     block:
+  #       - name: "Get the Authentication Token for the future requests"
+  #         ansible.builtin.uri:
+  #           url: "https://{{ controller_hostname }}/api/v2/tokens/"
+  #           user: "{{ controller_username }}"
+  #           password: "{{ controller_password }}"
+  #           method: POST
+  #           force_basic_auth: true
+  #           validate_certs: "{{ controller_validate_certs }}"
+  #           status_code: 201
+  #         register: authtoken_res
 
-        - name: "Set the oauth token to be used since now"
-          ansible.builtin.set_fact:
-            controller_oauthtoken: "{{ authtoken_res.json.token }}"
-            controller_oauthtoken_url: "{{ authtoken_res.json.url }}"
-      when: controller_oauthtoken is not defined
-      tags:
-        - always
+  #       - name: "Set the oauth token to be used since now"
+  #         ansible.builtin.set_fact:
+  #           controller_oauthtoken: "{{ authtoken_res.json.token }}"
+  #           controller_oauthtoken_url: "{{ authtoken_res.json.url }}"
+  #     when: controller_oauthtoken is not defined
+  #     tags:
+  #       - always
 
   tasks:
 
+     - name: Clone the repository if it doesn't exist
+       ansible.builtin.git:
+                repo: "{{ repo_url }}"
+                dest: "{{ repo_dir }}"
+                clone: yes
+                update: yes
+       no_log: true
 
-       - name: export 
-         awx.awx.export:
-            credentials: 'All'
-         register: export
-
-
-       - debug: var=export
-
+     - name: Generate Branch 
+       ansible.builtin.set_fact:
+            export_branch: "aap_export_{{ ansible_date_time.year }}_{{ ansible_date_time.month }}_{{ ansible_date_time.day }}_jobID_{{ awx_job_id }}"
     
+     - name: Checkout new branch
+       ansible.builtin.command:
+          cmd: "git checkout -b {{ export_branch }}"
+          chdir: "{{ repo_dir }}"   
+
+     - name: Make a GET call to the Tower settings API
+       uri:
+          url: "https://{{ controller_host }}/api/v2/settings/all/"
+          method: GET
+          headers:
+            Authorization: "Bearer {{ aap_bearer_token }}"
+            Content-Type: "application/json"
+          validate_certs: no  # Set to yes if using HTTPS with valid certs
+       register: aap_controller_settings_response
+      
+     - name: Convert registed output from api call to settings dictionary
+       ansible.builtin.set_fact:
+        aap_settings: "{{ aap_controller_settings_response.json }}"
+    
+     - name: Copy settings template to working directory
+       ansible.builtin.template:
+        src: settings.yml.j2
+        dest: "{{ repo_dir}}/output/settings.yml"
+
+     - name: Add the file to the Git repository
+       ansible.builtin.command:
+          cmd: "git status"
+          chdir: "{{ repo_dir }}"
+
+     - name: Add the file to the Git repository
+       ansible.builtin.command:
+          cmd: "git add . "
+          chdir: "{{ repo_dir }}"
+
+     - name: Commit the changes
+       ansible.builtin.command:
+          cmd: git commit --no-verify -m 'update settings yaml'
+          chdir: "{{ repo_dir }}"
+        ignore_errors: yes
+      
+     - name: Push the changes to the remote repository
+       ansible.builtin.command:
+          cmd: "git push origin {{ export_branch }}"  
+          chdir: "{{ repo_dir }}"
 
   #   - name: "Gets current Organizations configured"
   #     ansible.builtin.set_fact:
@@ -148,15 +194,7 @@
 
  
 
-  # #  - name: Make a GET call to the Tower settings API
-  # #    uri:
-  # #     url: "https://{{ controller_host }}/api/v2/settings/all/"
-  # #     method: GET
-  # #     headers:
-  # #       Authorization: "Bearer {{ aap_bearer_token }}"
-  # #       Content-Type: "application/json"
-  # #     validate_certs: no  # Set to yes if using HTTPS with valid certs
-  # #    register: aap_controller_settings_response
+
 
   # #  - name: Convert registed output from export to job templates dictionary
   # #    ansible.builtin.set_fact:
@@ -184,40 +222,16 @@
   #       src: credentials.yml.j2
   #       dest: "{{ repo_dir}}/output/credentials.yml"
 
-    # - name: Copy settings template to working directory
-    #   ansible.builtin.template:
-    #     src: settings.yml.j2
-    #     dest: "{{ repo_dir}}/output/settings.yml"
+   
 
-    # - name: Add the file to the Git repository
-    #   ansible.builtin.command:
-    #     cmd: "git status"
-    #     chdir: "{{ repo_dir }}"
-
-    # - name: Add the file to the Git repository
-    #   ansible.builtin.command:
-    #     cmd: "git add . "
-    #     chdir: "{{ repo_dir }}"
-
-    # - name: Commit the changes
-    #   ansible.builtin.command:
-    #     cmd: git commit --no-verify -m 'update templates yaml'
-    #     chdir: "{{ repo_dir }}"
-    #   ignore_errors: yes
-    
-    # - name: Push the changes to the remote repository
-    #   ansible.builtin.command:
-    #     cmd: "git push origin {{ export_branch }}"  
-    #     chdir: "{{ repo_dir }}"
-
-  post_tasks:
-    - name: "Delete the Authentication Token used"
-      ansible.builtin.uri:
-        url: "https://{{ controller_hostname }}{{ controller_oauthtoken_url }}"
-        user: "{{ controller_username }}"
-        password: "{{ controller_password }}"
-        method: DELETE
-        force_basic_auth: true
-        validate_certs: "{{ controller_validate_certs }}"
-        status_code: 204
-      when: controller_oauthtoken_url is defined
+  # post_tasks:
+  #   - name: "Delete the Authentication Token used"
+  #     ansible.builtin.uri:
+  #       url: "https://{{ controller_hostname }}{{ controller_oauthtoken_url }}"
+  #       user: "{{ controller_username }}"
+  #       password: "{{ controller_password }}"
+  #       method: DELETE
+  #       force_basic_auth: true
+  #       validate_certs: "{{ controller_validate_certs }}"
+  #       status_code: 204
+  #     when: controller_oauthtoken_url is defined

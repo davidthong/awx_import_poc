@@ -1,6 +1,0 @@
----
-controller_roles:
-  - team: "Normal Users"
-    job_template: "Demo Job Template"
-    role: "read"
-...
