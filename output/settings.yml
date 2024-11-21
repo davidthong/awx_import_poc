@@ -123,7 +123,7 @@ controller_settings_all:
     AUTH_LDAP_USER_FLAGS_BY_GROUP: {}
     AUTH_LDAP_ORGANIZATION_MAP: {}
     AUTH_LDAP_TEAM_MAP: {}
-    AUTH_LDAP_1_SERVER_URI: 'ldap://server1'
+    AUTH_LDAP_1_SERVER_URI: 'ldap://server2'
     AUTH_LDAP_1_BIND_DN: ''
     # AUTH_LDAP_1_BIND_PASSWORD: ''
     AUTH_LDAP_1_START_TLS: False
