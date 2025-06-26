@@ -6,4 +6,4 @@
 
      - name: Herro World 
        ansible.builtin.debug:
-          msg: "Herro World"
+          msg: "{{test_msg }}"
