@@ -1,0 +1,5 @@
+# constructed.yml
+plugin: constructed
+groups:
+  dev_servers:
+    hosts: "{{ ansible_playbook_groups['all'] | selectattr('tags.env_type', 'eq', 'dev') | map(attribute='inventory_hostname') | list }}"
