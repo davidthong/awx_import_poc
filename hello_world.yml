@@ -1,6 +1,6 @@
 - name: Hello Worlds
-  hosts: localhost
-  connection: local
+  hosts: all
+
 
   tasks:
 
