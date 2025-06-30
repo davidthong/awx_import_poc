@@ -1,5 +1,5 @@
 - name: Hello Worlds
-  hosts: all
+  hosts: homelab
 
 
   tasks:
