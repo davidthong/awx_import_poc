@@ -4,6 +4,6 @@
 
   tasks:
 
-     - name: Herro World 
+     - name: Hello World 
        ansible.builtin.debug:
           msg: "{{test_msg }}"
