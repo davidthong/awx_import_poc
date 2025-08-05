@@ -1,7 +1,8 @@
 ---
 collections:
- - name: awx.awx
- - name: infra.controller_configuration
- - name: community.postgresql
- - name: amazon.aws
-   version: ">=5.0.0"
+# - name: awx.awx
+# - name: infra.controller_configuration
+# - name: community.postgresql
+# - name: amazon.aws
+ #  version: ">=5.0.0"
+  - name: ansible.controller
