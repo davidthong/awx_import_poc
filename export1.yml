@@ -13,16 +13,16 @@
 
 
   tasks:
-      #  - name: export
-      #    ansible.controller.export:
-      #       organizations: 'Default'
-      #    register: aap_organizations
-
-
-       - name: Exports Orgs 
-         awx.awx.export:
-            all: true
+       - name: export
+         ansible.controller.export:
+            organizations: 'Default'
          register: aap_organizations
+
+
+      #  - name: Exports Orgs 
+      #    awx.awx.export:
+      #       all: true
+      #    register: aap_organizations
 
       #  - name: Export Credential Types 
       #    awx.awx.export:
