@@ -13,10 +13,10 @@
 
 
   tasks:
-       - name: export
-         ansible.controller.export:
-            organizations: 'Default'
-         register: aap_organizations
+      #  - name: export
+      #    ansible.controller.export:
+      #       organizations: 'Default'
+      #    register: aap_organizations
 
 
        - name: Exports Orgs 
