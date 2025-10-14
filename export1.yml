@@ -19,10 +19,10 @@
          register: aap_organizations
 
 
-      #  - name: Exports Orgs 
-      #    awx.awx.export:
-      #       organizations: 'all'
-      #    register: aap_organizations
+       - name: Exports Orgs 
+         awx.awx.export:
+            organizations: 'all'
+         register: aap_organizations
 
       #  - name: Export Credential Types 
       #    awx.awx.export:
