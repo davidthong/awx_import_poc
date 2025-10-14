@@ -15,7 +15,7 @@
   tasks:
        - name: export
          ansible.controller.export:
-            organizations: 
+            organizations: 'Default'
          register: aap_organizations
 
 
