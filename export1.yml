@@ -13,128 +13,133 @@
 
 
   tasks:
-
-       - name: Exports Orgs 
-         awx.awx.export:
-            organizations: 'all'
+       - name: export
+         ansible.controller.export:
+            organizations: all
          register: aap_organizations
 
-       - name: Export Credential Types 
-         awx.awx.export:
-            credential_types : 'all'
-         register: aap_credential_types 
 
-       - name: Export Credentials
-         awx.awx.export:
-            credentials : 'all'
-         register: aap_credentials
+      #  - name: Exports Orgs 
+      #    awx.awx.export:
+      #       organizations: 'all'
+      #    register: aap_organizations
 
-       - name: Export Projects
-         awx.awx.export:
-            projects : 'all'
-         register: aap_projects
+      #  - name: Export Credential Types 
+      #    awx.awx.export:
+      #       credential_types : 'all'
+      #    register: aap_credential_types 
+
+      #  - name: Export Credentials
+      #    awx.awx.export:
+      #       credentials : 'all'
+      #    register: aap_credentials
+
+      #  - name: Export Projects
+      #    awx.awx.export:
+      #       projects : 'all'
+      #    register: aap_projects
        
-       - name: Export Inventory
-         awx.awx.export:
-            inventory : 'all'
-         register: aap_inventory
+      #  - name: Export Inventory
+      #    awx.awx.export:
+      #       inventory : 'all'
+      #    register: aap_inventory
         
-       - name: Export Inventory Sources
-         awx.awx.export:
-            inventory_sources : 'all'
-         register: aap_inventory_sources
+      #  - name: Export Inventory Sources
+      #    awx.awx.export:
+      #       inventory_sources : 'all'
+      #    register: aap_inventory_sources
 
-       - name: Export Job Templates
-         awx.awx.export:
-            job_templates : 'all'
-         register: aap_job_templates
+      #  - name: Export Job Templates
+      #    awx.awx.export:
+      #       job_templates : 'all'
+      #    register: aap_job_templates
 
-       - name: Export Job Templates
-         awx.awx.export:
-            workflow_job_templates : 'all'
-         register: workflow_job_templates
+      #  - name: Export Job Templates
+      #    awx.awx.export:
+      #       workflow_job_templates : 'all'
+      #    register: workflow_job_templates
       
-       - name: Initialize aap_export
-         ansible.builtin.set_fact:
-           aap_export: {}
+      #  - name: Initialize aap_export
+      #    ansible.builtin.set_fact:
+      #      aap_export: {}
 
 
-       - name: Combine all AAP objects into one dictionary 
-         ansible.builtin.set_fact:
-            aap_export: "{{ aap_export | combine(item) }}"
-         loop: 
-              - "{{ aap_organizations.assets }}"
-              - "{{ aap_organizations.assets }}"
-              - "{{ aap_credential_types.assets }}"
-              - "{{ aap_credentials.assets }}"
-              - "{{ aap_inventory.assets }}"
-              - "{{ aap_inventory_sources.assets }}"
-              - "{{ aap_job_templates.assets }}"
-              - "{{ workflow_job_templates.assets }}"
+      #  - name: Combine all AAP objects into one dictionary 
+      #    ansible.builtin.set_fact:
+      #       aap_export: "{{ aap_export | combine(item) }}"
+      #    loop: 
+      #         - "{{ aap_organizations.assets }}"
+      #         - "{{ aap_organizations.assets }}"
+      #         - "{{ aap_credential_types.assets }}"
+      #         - "{{ aap_credentials.assets }}"
+      #         - "{{ aap_inventory.assets }}"
+      #         - "{{ aap_inventory_sources.assets }}"
+      #         - "{{ aap_job_templates.assets }}"
+      #         - "{{ workflow_job_templates.assets }}"
            
-       - debug: var=aap_export
+      #  - debug: var=aap_export
 
-       - name: Clone the repository if it doesn't exist
-         ansible.builtin.git:
-            repo: "{{ repo_url }}"
-            dest: "{{ repo_dir }}"
-            clone: yes
-            update: yes
-         no_log: true
+      #  - name: Clone the repository if it doesn't exist
+      #    ansible.builtin.git:
+      #       repo: "{{ repo_url }}"
+      #       dest: "{{ repo_dir }}"
+      #       clone: yes
+      #       update: yes
+      #    no_log: true
 
-       - name: Generate Branch 
-         ansible.builtin.set_fact:
-            export_branch: "aap_export_{{ ansible_date_time.year }}_{{ ansible_date_time.month }}_{{ ansible_date_time.day }}_jobID_{{ awx_job_id }}"
+      #  - name: Generate Branch 
+      #    ansible.builtin.set_fact:
+      #       export_branch: "aap_export_{{ ansible_date_time.year }}_{{ ansible_date_time.month }}_{{ ansible_date_time.day }}_jobID_{{ awx_job_id }}"
 
-       - debug: var=export_branch
+      #  - debug: var=export_branch
        
-       - name: Checkout new branch
-         ansible.builtin.command:
-          cmd: "git checkout -b {{ export_branch }}"
-          chdir: "{{ repo_dir }}"   
+      #  - name: Checkout new branch
+      #    ansible.builtin.command:
+      #     cmd: "git checkout -b {{ export_branch }}"
+      #     chdir: "{{ repo_dir }}"   
 
-       - name: config email
-         ansible.builtin.command:
-          cmd: "git config --global user.email 'dthong@gmail.com'"
-          chdir: "{{ repo_dir }}"
+      #  - name: config email
+      #    ansible.builtin.command:
+      #     cmd: "git config --global user.email 'dthong@gmail.com'"
+      #     chdir: "{{ repo_dir }}"
         
-       - name: config name
-         ansible.builtin.command:
-            cmd: "git config --global user.name 'david thong'"
-            chdir: "{{ repo_dir }}"
+      #  - name: config name
+      #    ansible.builtin.command:
+      #       cmd: "git config --global user.name 'david thong'"
+      #       chdir: "{{ repo_dir }}"
 
-       - name: Cleanup working directory
-         ansible.builtin.file:
-            path: "{{ repo_dir}}/output/"  # Replace with the directory you want to remove
-            state: absent
+      #  - name: Cleanup working directory
+      #    ansible.builtin.file:
+      #       path: "{{ repo_dir}}/output/"  # Replace with the directory you want to remove
+      #       state: absent
         
-       - name: Ensure the directory exists
-         ansible.builtin.file:
-            path: "{{ repo_dir}}/output/"   # Replace with the directory path you want to create
-            state: directory
+      #  - name: Ensure the directory exists
+      #    ansible.builtin.file:
+      #       path: "{{ repo_dir}}/output/"   # Replace with the directory path you want to create
+      #       state: directory
       
-       - name: Copy settings template to working directory
-         ansible.builtin.copy:
-            content: "{{ aap_export }}"
-            dest: "{{ repo_dir}}/output/export.json"
+      #  - name: Copy settings template to working directory
+      #    ansible.builtin.copy:
+      #       content: "{{ aap_export }}"
+      #       dest: "{{ repo_dir}}/output/export.json"
 
-       - name: Add the file to the Git repository
-         ansible.builtin.command:
-            cmd: "git status"
-            chdir: "{{ repo_dir }}"
+      #  - name: Add the file to the Git repository
+      #    ansible.builtin.command:
+      #       cmd: "git status"
+      #       chdir: "{{ repo_dir }}"
 
-       - name: Add the file to the Git repository
-         ansible.builtin.command:
-            cmd: "git add . "
-            chdir: "{{ repo_dir }}"
+      #  - name: Add the file to the Git repository
+      #    ansible.builtin.command:
+      #       cmd: "git add . "
+      #       chdir: "{{ repo_dir }}"
 
-       - name: Commit the changes
-         ansible.builtin.command:
-            cmd: git commit --no-verify -m 'aap export'
-            chdir: "{{ repo_dir }}"
-         ignore_errors: yes
+      #  - name: Commit the changes
+      #    ansible.builtin.command:
+      #       cmd: git commit --no-verify -m 'aap export'
+      #       chdir: "{{ repo_dir }}"
+      #    ignore_errors: yes
         
-       - name: Push the changes to the remote repository
-         ansible.builtin.command:
-            cmd: "git push origin {{ export_branch }}"  
-            chdir: "{{ repo_dir }}"
+      #  - name: Push the changes to the remote repository
+      #    ansible.builtin.command:
+      #       cmd: "git push origin {{ export_branch }}"  
+      #       chdir: "{{ repo_dir }}"
