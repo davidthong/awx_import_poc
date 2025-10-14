@@ -21,7 +21,7 @@
 
        - name: Exports Orgs 
          awx.awx.export:
-            organizations: 'all'
+            all: true
          register: aap_organizations
 
       #  - name: Export Credential Types 
