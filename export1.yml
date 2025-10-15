@@ -19,14 +19,17 @@
   tasks:
        - name: export
          ansible.controller.export:
-            organizations: 'All'
-         register: aap_organizations
+            all: true
+         register: aap_all
 
-       - debug: var=aap_organizations
-      #  - name: Exports Orgs 
-      #    awx.awx.export:
-      #       all: true
-      #    register: aap_organizations
+       - debug: var=aap_all
+
+       - name: Exports Orgs 
+         awx.awx.export:
+            all: true
+         register: awx_all
+
+       - debug: var=aap_all
 
       #  - name: Export Credential Types 
       #    awx.awx.export:
