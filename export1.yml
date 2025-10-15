@@ -10,12 +10,16 @@
    
   vars_files:
     - vault.yml
+  
+  ßenvironment:
+    CONTROLLER_OPTIONAL_API_URLPATTERN_PREFIX: '/api/controller/'
+    AWXKIT_API_BASE_PATH: '/api/controller/'
 
 
   tasks:
        - name: export
          ansible.controller.export:
-            organizations: 'Default'
+            organizations: 'All'
          register: aap_organizations
 
 
