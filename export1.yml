@@ -11,7 +11,7 @@
   vars_files:
     - vault.yml
   
-  ßenvironment:
+  environment:
     CONTROLLER_OPTIONAL_API_URLPATTERN_PREFIX: '/api/controller/'
     AWXKIT_API_BASE_PATH: '/api/controller/'
 
