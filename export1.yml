@@ -22,7 +22,7 @@
             organizations: 'All'
          register: aap_organizations
 
-
+       - debug: var=aap_organizations
       #  - name: Exports Orgs 
       #    awx.awx.export:
       #       all: true
